@@ -5,6 +5,51 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sell My Company Data | Get paid for the record your business already creates</title>
 <meta name="description" content="AI labs pay for the operating record inside your business. Free valuation in 60 seconds, de-identified before anything moves, paid in 7 days.">
+<link rel="canonical" href="https://sellmycompanydata.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SellMyCompanyData">
+<meta property="og:title" content="Sell My Company Data | Get paid for the record your business already creates">
+<meta property="og:description" content="AI labs pay for the operating record inside your business. Free valuation in 60 seconds, de-identified before anything moves, paid in 7 days.">
+<meta property="og:url" content="https://sellmycompanydata.com/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sell My Company Data | Get paid for the record your business already creates">
+<meta name="twitter:description" content="AI labs pay for the operating record inside your business. Free valuation in 60 seconds, de-identified before anything moves, paid in 7 days.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "name": "SellMyCompanyData",
+      "url": "https://sellmycompanydata.com/",
+      "description": "We license de-identified business workflow data from companies to AI labs."
+    },
+    {
+      "@type": "WebSite",
+      "name": "SellMyCompanyData",
+      "url": "https://sellmycompanydata.com/"
+    },
+    {
+      "@type": "Service",
+      "name": "Company Data Valuation and Licensing",
+      "provider": {"@type": "Organization", "name": "SellMyCompanyData", "url": "https://sellmycompanydata.com/"},
+      "description": "Free ballpark valuation of your company's operational data, and licensing of de-identified business workflow data to AI labs. Companies get paid, typically within 7 days of their data passing review.",
+      "areaServed": "Worldwide"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "Who buys the data?", "acceptedAnswer": {"@type": "Answer", "text": "We license de-identified business workflow data to AI labs and research teams training frontier models. Your data is never resold to competitors or published."}},
+        {"@type": "Question", "name": "What kind of data qualifies?", "acceptedAnswer": {"@type": "Answer", "text": "Operational records from the tools your team uses daily: CRM pipelines, support tickets, contracts, invoices, project boards, SOPs and internal docs. Larger teams and more years of history generally mean a higher payout."}},
+        {"@type": "Question", "name": "Will my customers' information be exposed?", "acceptedAnswer": {"@type": "Answer", "text": "No. Personal and customer-identifying information is removed during processing, and original datasets are deleted once processing is complete."}},
+        {"@type": "Question", "name": "Do I still own my data?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. This is a licence, not a sale. You keep ownership and the licence is bounded by scope, permitted use and duration."}},
+        {"@type": "Question", "name": "How fast do I get paid?", "acceptedAnswer": {"@type": "Answer", "text": "Within 7 days of your data passing review. Most companies go from first call to payment in two to three weeks."}},
+        {"@type": "Question", "name": "Does this take a lot of my team's time?", "acceptedAnswer": {"@type": "Answer", "text": "Usually a single call and granting read-only access. We handle extraction, cleaning and de-identification."}}
+      ]
+    }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700&display=swap" rel="stylesheet">
@@ -118,6 +163,9 @@ select:focus,input:focus{border-color:#b4b4bb;box-shadow:0 0 0 3px rgba(13,13,13
 
 .formgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 .fine{font-size:12.5px;color:var(--dim);margin-top:14px;text-align:center}
+.form-msg{margin-top:16px;font-size:14px;border-radius:10px;padding:10px 14px;text-align:center}
+.form-msg.ok{background:#ecfdf5;color:#047857;border:1px solid #a7f3d0}
+.form-msg.err{background:#fef2f2;color:#b91c1c;border:1px solid #fecaca}
 
 footer{border-top:1px solid var(--line2);padding:40px 0;color:var(--dim);font-size:13.5px}
 footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
@@ -320,17 +368,22 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:1
       <p>Two minutes. We reply within one business day.</p>
     </div>
     <div class="panel">
-      <div class="formgrid">
-        <div class="field" style="margin:0"><label>First name</label><input type="text" placeholder="Jane"></div>
-        <div class="field" style="margin:0"><label>Last name</label><input type="text" placeholder="Cooper"></div>
-      </div>
-      <div class="field" style="margin:18px 0 0"><label>Work email</label><input type="email" placeholder="jane@company.com"></div>
-      <div class="field" style="margin:18px 0 0"><label>Company</label><input type="text" placeholder="Company Ltd"></div>
-      <div class="field" style="margin:18px 0 0"><label>Company website</label><input type="text" placeholder="company.com"></div>
-      <div style="margin-top:22px">
-        <button class="btn btn-primary btn-lg btn-block" onclick="alert('Demo build. Connect to Formspree, Tally, or a Cloudflare Worker to receive submissions.')">Request my valuation</button>
-      </div>
-      <div class="fine">We use these details to prepare your estimate. No newsletters.</div>
+      <form id="lead-form" novalidate>
+        <div class="formgrid">
+          <div class="field" style="margin:0"><label>First name</label><input id="first-name" type="text" placeholder="Jane" required></div>
+          <div class="field" style="margin:0"><label>Last name</label><input id="last-name" type="text" placeholder="Cooper"></div>
+        </div>
+        <div class="field" style="margin:18px 0 0"><label>Work email</label><input id="email" type="email" placeholder="jane@company.com" required></div>
+        <div class="field" style="margin:18px 0 0"><label>Company</label><input id="company" type="text" placeholder="Company Ltd" required></div>
+        <div class="field" style="margin:18px 0 0"><label>Company website</label><input id="website" type="text" placeholder="company.com"></div>
+        <input type="hidden" id="estimate-range" name="range">
+        <input type="text" id="_gotcha" name="_gotcha" style="position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div style="margin-top:22px">
+          <button type="submit" class="btn btn-primary btn-lg btn-block" id="lead-submit">Request my valuation</button>
+        </div>
+        <div id="lead-msg"></div>
+        <div class="fine">We use these details to prepare your estimate. No newsletters.</div>
+      </form>
     </div>
   </div>
 </section>
@@ -380,10 +433,58 @@ function calc(){
   var low = 25000 + Math.pow(Math.max(raw,0.3),2.1)*4000;
   var high = low*1.4;
   document.getElementById('range').textContent = money(low)+' \u2013 '+money(high);
+  var er = document.getElementById('estimate-range');
+  if (er) er.value = document.getElementById('range').textContent;
   document.getElementById('bar').style.width = Math.max(6,Math.min(100,(raw/20.5)*100)).toFixed(0)+'%';
 }
 ['emp','rev','ind','yr'].forEach(function(id){ document.getElementById(id).addEventListener('change',calc); });
 calc();
+
+// lead form
+(function(){
+  var form = document.getElementById('lead-form');
+  if (!form) return;
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var btn = document.getElementById('lead-submit');
+    var msg = document.getElementById('lead-msg');
+    var payload = {
+      firstName: document.getElementById('first-name').value.trim(),
+      lastName: document.getElementById('last-name').value.trim(),
+      email: document.getElementById('email').value.trim(),
+      company: document.getElementById('company').value.trim(),
+      website: document.getElementById('website').value.trim(),
+      range: document.getElementById('estimate-range').value,
+      _gotcha: document.getElementById('_gotcha').value,
+    };
+    btn.disabled = true; btn.textContent = 'Sending...';
+    msg.className = 'form-msg'; msg.textContent = '';
+    fetch('/api/lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    }).then(function(r){
+      return r.json().catch(function(){ return {}; }).then(function(d){ return { ok: r.ok, d: d }; });
+    }).then(function(res){
+      if (res.ok && res.d.ok) {
+        msg.className = 'form-msg ok';
+        msg.textContent = "Thanks, we've received your details. We reply within one business day.";
+        form.reset();
+      } else if (res.d && res.d.error === 'invalid_email') {
+        msg.className = 'form-msg err';
+        msg.textContent = 'Please check your email address.';
+      } else {
+        msg.className = 'form-msg err';
+        msg.textContent = 'Something went wrong. Please try again.';
+      }
+    }).catch(function(){
+      msg.className = 'form-msg err';
+      msg.textContent = 'Network error. Please try again.';
+    }).finally(function(){
+      btn.disabled = false; btn.textContent = 'Request my valuation';
+    });
+  });
+})();
 </script>
 </body>
 </html>

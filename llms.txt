@@ -1,0 +1,21 @@
+# SellMyCompanyData
+
+> We license de-identified business workflow data from companies to AI labs. Get a free ballpark valuation of your company's data in 60 seconds.
+
+## Key facts
+- [Home](https://sellmycompanydata.com/): free valuation of your company's operational data in 60 seconds
+- We license de-identified business workflow data to AI labs and research teams training frontier models
+- Data types: CRM pipelines, support tickets, contracts, invoices, project boards, SOPs, internal docs
+- Customer details are removed before anything leaves processing; original datasets are deleted afterwards
+- It is a licence, not a sale: companies keep ownership of their data
+- Payment lands within 7 days of the data passing review
+
+## Pricing
+- The valuation is free
+- Payout ranges from roughly $30K to $3M+ depending on team size, history, sector and data sources
+
+## FAQ
+- Who buys the data? AI labs and research teams training frontier models. Data is never resold to competitors or published.
+- Will customer information be exposed? No. Personal and customer-identifying information is removed to a documented standard before anything ships.
+- How fast do companies get paid? Within 7 days of their data passing review. Most companies go from first call to payment in two to three weeks.
+- What kind of data qualifies? Operational records from the tools teams use daily: CRM pipelines, support tickets, contracts, invoices, project boards, SOPs and internal docs.
