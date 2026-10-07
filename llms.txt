@@ -2,20 +2,28 @@
 
 > We license de-identified business workflow data from companies to AI labs. Get a free ballpark valuation of your company's data in 60 seconds.
 
+## Pages
+- [Home](https://sellmycompanydata.com/): free valuation of your company's operational data in 60 seconds, then a call
+- [For buyers](https://sellmycompanydata.com/buyers/): license de-identified business data from real companies. Send a data brief
+- [Refer a business](https://sellmycompanydata.com/refer/): introduce a company with valuable operating data and earn a referral fee on every completed licence
+
 ## Key facts
-- [Home](https://sellmycompanydata.com/): free valuation of your company's operational data in 60 seconds
 - We license de-identified business workflow data to AI labs and research teams training frontier models
 - Data types: CRM pipelines, support tickets, contracts, invoices, project boards, SOPs, internal docs
 - Customer details are removed before anything leaves processing; original datasets are deleted afterwards
 - It is a licence, not a sale: companies keep ownership of their data
 - Payment lands within 7 days of the data passing review
+- The data is real work from real companies, never synthetic or model-generated filler
 
 ## Pricing
 - The valuation is free
-- Payout ranges from roughly $30K to $3M+ depending on team size, history, sector and data sources
+- Payout to companies ranges from roughly $30K to $3M+ depending on team size, history, sector and data sources
+- Referral fees are typically 5-10% of the licence value, agreed in writing before the introduction
 
 ## FAQ
 - Who buys the data? AI labs and research teams training frontier models. Data is never resold to competitors or published.
 - Will customer information be exposed? No. Personal and customer-identifying information is removed to a documented standard before anything ships.
 - How fast do companies get paid? Within 7 days of their data passing review. Most companies go from first call to payment in two to three weeks.
 - What kind of data qualifies? Operational records from the tools teams use daily: CRM pipelines, support tickets, contracts, invoices, project boards, SOPs and internal docs.
+- What rights do buyers get? A defined licence, not a transfer of ownership. Scope, permitted use, model types and duration are agreed in writing.
+- How fast does a buyer get a reply? Within one business day of a brief. Samples are redacted and covered by an NDA.
