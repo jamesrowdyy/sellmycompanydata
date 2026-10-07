@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="SellMyCompanyData">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="format-detection" content="telephone=no">
-<title>Sell My Company Data | Get paid for the record your business already creates</title>
+<title>Sell My Company Data | Free Valuation, Paid in 7 Days</title>
 <meta name="description" content="AI labs pay for the operating record inside your business. Free valuation in 60 seconds, de-identified before anything moves, paid in 7 days.">
 <link rel="canonical" href="https://sellmycompanydata.com/">
 <meta property="og:type" content="website">
@@ -97,6 +97,7 @@
   </div>
 </div>
 
+<main>
 <div class="hero wrap" id="top">
   <div class="eyebrow"><i></i>AI labs are buying the record of how real businesses run</div>
   <h1>Your company's data is worth<br><em>more than you think.</em></h1>
@@ -169,11 +170,11 @@
           <input type="hidden" id="rev" value="1.5">
         </div>
         <div class="field">
-          <label>Year founded</label>
+          <label for="yr">Year founded</label>
           <select id="yr"></select>
         </div>
         <div class="field">
-          <label>Industry</label>
+          <label for="ind">Industry</label>
           <select id="ind">
             <option value="1">General / other</option>
             <option value="1.3">Accounting &amp; bookkeeping</option>
@@ -281,10 +282,10 @@
       <p>Defined in writing before anything moves, and you sign off on every source.</p>
     </div>
     <div class="trustgrid">
-      <div><div class="ico">&#9636;</div><h4>Scope, in writing</h4><p>Approved sources and clear boundaries agreed up front. Originals deleted after processing.</p></div>
-      <div><div class="ico">&#8984;</div><h4>Read-only access</h4><p>Encrypted in transit and at rest. Access is read-only and revoked when the project ends.</p></div>
-      <div><div class="ico">&#9678;</div><h4>De-identified</h4><p>Names, contact details and identifying fields removed to a documented standard before anything ships.</p></div>
-      <div><div class="ico">&sect;</div><h4>Signed terms</h4><p>Use, retention and payment set out in an agreement you approve before a single record is shared.</p></div>
+      <div><div class="ico">&#9636;</div><h3>Scope, in writing</h3><p>Approved sources and clear boundaries agreed up front. Originals deleted after processing.</p></div>
+      <div><div class="ico">&#8984;</div><h3>Read-only access</h3><p>Encrypted in transit and at rest. Access is read-only and revoked when the project ends.</p></div>
+      <div><div class="ico">&#9678;</div><h3>De-identified</h3><p>Names, contact details and identifying fields removed to a documented standard before anything ships.</p></div>
+      <div><div class="ico">&sect;</div><h3>Signed terms</h3><p>Use, retention and payment set out in an agreement you approve before a single record is shared.</p></div>
     </div>
   </div>
 </section>
@@ -298,12 +299,12 @@
     <div class="panel">
       <form id="lead-form" novalidate>
         <div class="formgrid">
-          <div class="field" style="margin:0"><label>First name</label><input id="first-name" type="text" placeholder="Jane" required></div>
-          <div class="field" style="margin:0"><label>Last name</label><input id="last-name" type="text" placeholder="Cooper"></div>
+          <div class="field" style="margin:0"><label for="first-name">First name</label><input id="first-name" type="text" placeholder="Jane" autocomplete="given-name" required></div>
+          <div class="field" style="margin:0"><label for="last-name">Last name</label><input id="last-name" type="text" placeholder="Cooper" autocomplete="family-name"></div>
         </div>
-        <div class="field" style="margin:18px 0 0"><label>Work email</label><input id="email" type="email" placeholder="jane@company.com" required></div>
-        <div class="field" style="margin:18px 0 0"><label>Company</label><input id="company" type="text" placeholder="Company Ltd" required></div>
-        <div class="field" style="margin:18px 0 0"><label>Company website</label><input id="website" type="text" placeholder="company.com"></div>
+        <div class="field" style="margin:18px 0 0"><label for="email">Work email</label><input id="email" type="email" placeholder="jane@company.com" autocomplete="email" required></div>
+        <div class="field" style="margin:18px 0 0"><label for="company">Company</label><input id="company" type="text" placeholder="Company Ltd" autocomplete="organization" required></div>
+        <div class="field" style="margin:18px 0 0"><label for="website">Company website</label><input id="website" type="text" placeholder="company.com" autocomplete="url"></div>
         <input type="hidden" id="estimate-range" name="range">
         <input type="text" id="_gotcha" name="_gotcha" style="position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div style="margin-top:22px">
@@ -327,6 +328,7 @@
     <details><summary>Does this take a lot of my team's time?</summary><p>Usually a single call and granting read-only access. We handle extraction, cleaning and de-identification.</p></details>
   </div>
 </section>
+</main>
 
 <footer><div class="wrap">
   <div>&copy; 2026 SellMyCompanyData. All rights reserved.</div>

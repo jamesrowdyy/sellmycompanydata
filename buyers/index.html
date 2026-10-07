@@ -56,7 +56,7 @@
   .hero-left .actions{justify-content:flex-start}
   .supply{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
   .supply-item{border:1px solid var(--line);border-radius:14px;padding:20px;background:#fff}
-  .supply-item h4{margin:0 0 10px;font-size:15px;font-weight:600}
+  .supply-item h3{margin:0 0 10px;font-size:15px;font-weight:600}
   .supply-item .tags{margin-top:0}
   .split{display:grid;grid-template-columns:1fr 1fr;gap:20px}
   .quote{border-left:2px solid var(--accent);padding-left:18px;color:var(--ink2);font-size:17px;line-height:1.6}
@@ -83,6 +83,7 @@
   </nav>
 </div></header>
 
+<main>
 <div class="hero hero-left wrap">
   <div class="eyebrow"><i></i>For AI labs, model developers and research teams</div>
   <h1>License real business data.<br><em>Not synthetic filler.</em></h1>
@@ -120,12 +121,12 @@
       <p>Supply is sourced per brief. Tell us the shape you need and we match it against what our companies hold.</p>
     </div>
     <div class="supply">
-      <div class="supply-item"><h4>Work conversations</h4><p style="color:var(--muted);font-size:14px;margin:0">Threads where problems are raised, argued over and resolved, with the decision and the reasoning.</p><div class="tags"><span>Slack</span><span>Teams</span><span>Email</span><span>Support</span></div></div>
-      <div class="supply-item"><h4>Operations &amp; finance</h4><p style="color:var(--muted);font-size:14px;margin:0">Orders, invoices, reconciliations, ledgers, purchase orders and the exception notes around them.</p><div class="tags"><span>Xero</span><span>QuickBooks</span><span>NetSuite</span><span>SAP</span></div></div>
-      <div class="supply-item"><h4>CRM &amp; customer support</h4><p style="color:var(--muted);font-size:14px;margin:0">Pipelines, account history, tickets and the service knowledge behind each resolution.</p><div class="tags"><span>Salesforce</span><span>HubSpot</span><span>Zendesk</span><span>Intercom</span></div></div>
-      <div class="supply-item"><h4>Documents &amp; knowledge</h4><p style="color:var(--muted);font-size:14px;margin:0">Contracts, reports, SOPs, decks and the operating playbooks a team wrote for itself.</p><div class="tags"><span>Drive</span><span>SharePoint</span><span>Notion</span><span>DocuSign</span></div></div>
-      <div class="supply-item"><h4>Tasks &amp; project work</h4><p style="color:var(--muted);font-size:14px;margin:0">Tickets and project work captured end to end: the brief, the steps taken, the back-and-forth, the finished result.</p><div class="tags"><span>Jira</span><span>Asana</span><span>Linear</span></div></div>
-      <div class="supply-item"><h4>Sectors we're sourcing</h4><p style="color:var(--muted);font-size:14px;margin:0">Deepest supply sits in accounting, legal, healthcare administration, manufacturing, logistics and financial services.</p><div class="tags"><span>Accounting</span><span>Legal</span><span>Manufacturing</span><span>3PL</span></div></div>
+      <div class="supply-item"><h3>Work conversations</h3><p style="color:var(--muted);font-size:14px;margin:0">Threads where problems are raised, argued over and resolved, with the decision and the reasoning.</p><div class="tags"><span>Slack</span><span>Teams</span><span>Email</span><span>Support</span></div></div>
+      <div class="supply-item"><h3>Operations &amp; finance</h3><p style="color:var(--muted);font-size:14px;margin:0">Orders, invoices, reconciliations, ledgers, purchase orders and the exception notes around them.</p><div class="tags"><span>Xero</span><span>QuickBooks</span><span>NetSuite</span><span>SAP</span></div></div>
+      <div class="supply-item"><h3>CRM &amp; customer support</h3><p style="color:var(--muted);font-size:14px;margin:0">Pipelines, account history, tickets and the service knowledge behind each resolution.</p><div class="tags"><span>Salesforce</span><span>HubSpot</span><span>Zendesk</span><span>Intercom</span></div></div>
+      <div class="supply-item"><h3>Documents &amp; knowledge</h3><p style="color:var(--muted);font-size:14px;margin:0">Contracts, reports, SOPs, decks and the operating playbooks a team wrote for itself.</p><div class="tags"><span>Drive</span><span>SharePoint</span><span>Notion</span><span>DocuSign</span></div></div>
+      <div class="supply-item"><h3>Tasks &amp; project work</h3><p style="color:var(--muted);font-size:14px;margin:0">Tickets and project work captured end to end: the brief, the steps taken, the back-and-forth, the finished result.</p><div class="tags"><span>Jira</span><span>Asana</span><span>Linear</span></div></div>
+      <div class="supply-item"><h3>Sectors we're sourcing</h3><p style="color:var(--muted);font-size:14px;margin:0">Deepest supply sits in accounting, legal, healthcare administration, manufacturing, logistics and financial services.</p><div class="tags"><span>Accounting</span><span>Legal</span><span>Manufacturing</span><span>3PL</span></div></div>
     </div>
   </div>
 </section>
@@ -177,10 +178,10 @@
           <input type="hidden" id="b-timeline" value="ASAP">
         </div>
         <div class="formgrid">
-          <div class="field" style="margin:0"><label for="b-name">Full name</label><input id="b-name" type="text" placeholder="Jane Cooper" required></div>
-          <div class="field" style="margin:0"><label for="b-org">Organization</label><input id="b-org" type="text" placeholder="Lab or company" required></div>
+          <div class="field" style="margin:0"><label for="b-name">Full name</label><input id="b-name" type="text" placeholder="Jane Cooper" autocomplete="name" required></div>
+          <div class="field" style="margin:0"><label for="b-org">Organization</label><input id="b-org" type="text" placeholder="Lab or company" autocomplete="organization" required></div>
         </div>
-        <div class="field" style="margin:18px 0 0"><label for="b-email">Work email</label><input id="b-email" type="email" placeholder="jane@lab.com" required></div>
+        <div class="field" style="margin:18px 0 0"><label for="b-email">Work email</label><input id="b-email" type="email" placeholder="jane@lab.com" autocomplete="email" required></div>
         <div class="field" style="margin:18px 0 0">
           <label for="b-budget">Budget range <span class="hint">Optional</span></label>
           <select id="b-budget">
@@ -215,6 +216,7 @@
     <details><summary>Do you work with data we can't scrape ourselves?</summary><p>That's the point. This is the material that is not on the open web: internal decisions, exception handling and the record of how a task actually got finished.</p></details>
   </div>
 </section>
+</main>
 
 <footer><div class="wrap">
   <div>&copy; 2026 SellMyCompanyData. All rights reserved.</div>
