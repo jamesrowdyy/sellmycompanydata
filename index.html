@@ -70,10 +70,12 @@
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "9be904b9d4cc49a1a1bfdaea47fd9573"}'></script>
 <!-- End Cloudflare Web Analytics -->
 <link rel="stylesheet" href="/styles.css">
-<link rel="stylesheet" href="/responsive.css?v=20261008-icons">
+<link rel="stylesheet" href="/responsive.css?v=20261008-polish">
 <script defer src="/navigation.js"></script>
+<link rel="stylesheet" href="/polish.css?v=1">
+<script defer src="/polish.js?v=1"></script>
 </head>
-<body>
+<body class="seller-page">
 
 <header><div class="wrap">
   <a class="brand" href="#top">
@@ -84,11 +86,11 @@
   <nav id="site-nav" aria-label="Main navigation">
     <a href="#value">Valuation</a>
     <a href="#how">How it works</a>
-    <a href="/buyers/">For buyers</a>
+    <a href="/buyers/">Buy data</a>
     <a href="/refer/">Refer for $10K</a>
     <a class="btn btn-primary" href="#apply">Get my valuation</a>
   </nav>
-</div></header>
+</div><div class="mobile-routes"><a href="/">Sell data</a><a href="/buyers/">Buy data</a><a href="/refer/">Refer for $10K</a></div></header>
 
 <div class="appbar" id="appbar">
   <div class="appbar-inner">
@@ -116,6 +118,18 @@
   </div>
 </div>
 
+<div class="wrap flow-wrap">
+  <div class="data-flow" aria-label="How a data licence works">
+    <div class="flow-top"><span class="small-label">FROM YOUR SYSTEMS TO AI RESEARCH</span><span class="flow-caption">Explore the process</span></div>
+    <div class="flow-controls" role="group" aria-label="Explore the licensing process">
+      <button type="button" data-flow="0" aria-pressed="true"><span class="flow-number">01</span><span>Your sources</span><span aria-hidden="true">→</span></button>
+      <button type="button" data-flow="1" aria-pressed="false"><span class="flow-number">02</span><span>Review &amp; protect</span><span aria-hidden="true">→</span></button>
+      <button type="button" data-flow="2" aria-pressed="false"><span class="flow-number">03</span><span>License to AI labs</span><span aria-hidden="true">↗︎</span></button>
+    </div>
+    <div class="flow-track" aria-hidden="true"><span></span></div>
+    <div class="flow-detail" aria-live="polite"><div class="flow-art" aria-hidden="true"><img src="/logos/slack.svg" alt=""><img src="/logos/googledrive.svg" alt=""><img src="/logos/salesforce.svg" alt=""></div><div><h2 id="flow-title">The work already lives in your tools.</h2><p id="flow-copy">Messages, documents and operating records. Start with the systems your team already uses.</p></div></div>
+  </div>
+</div>
 <section class="logoband">
   <div class="wrap">
     <p class="logoband-label">Connects to the tools your team already runs on</p>
@@ -130,7 +144,7 @@
       <div class="logotile"><img src="/logos/quickbooks.svg" alt="QuickBooks" loading="lazy" width="104" height="26"></div>
       <div class="logotile"><img src="/logos/sap.svg" alt="SAP" loading="lazy" width="104" height="26"></div>
       <div class="logotile"><img src="/logos/zendesk.svg" alt="Zendesk" loading="lazy" width="104" height="26"></div>
-      <div class="logotile"><img src="/logos/intercom.svg" alt="Intercom" loading="lazy" width="104" height="26"></div>
+      <div class="logotile"><img src="/logos/intercom.png" alt="Intercom" loading="lazy" width="104" height="26"></div>
       <div class="logotile"><img src="/logos/jira.svg" alt="Jira" loading="lazy" width="104" height="26"></div>
       <div class="logotile"><img src="/logos/googledrive.svg" alt="Google Drive" loading="lazy" width="104" height="26"></div>
       <div class="logotile"><img src="/logos/sharepoint.svg" alt="SharePoint" loading="lazy" width="104" height="26"></div>
@@ -247,6 +261,13 @@
   </div>
 </section>
 
+<section id="buy-and-refer" class="pathways"><div class="wrap">
+ <div class="sec-head"><h2>A place for every side of the deal.</h2><p>Source real business data, or introduce a company that has it.</p></div>
+ <div class="path-grid">
+  <article class="path-card buyer-path"><span class="small-label">FOR AI LABS &amp; RESEARCH TEAMS</span><div class="path-graphic" aria-hidden="true"><span>Messages</span><span>Documents</span><span>Workflows</span></div><h3>Buy data built by real work.</h3><p>Tell us the sector, format and volume you need. Review a de-identified sample before agreeing a licence.</p><a class="btn btn-primary" href="/buyers/">Request data <span aria-hidden="true">↗︎</span></a><span class="path-note">Rights-cleared. Scoped to your brief.</span></article>
+  <article class="path-card referral-path"><span class="small-label">REFERRAL PROGRAMME</span><div class="referral-amount" aria-hidden="true">$10K<span>per completed licence</span></div><h3>A good introduction pays.</h3><p>Know a company with valuable operating data? Earn a flat $10,000 when your referral completes a licence.</p><a class="btn btn-primary" href="/refer/">Refer a business <span aria-hidden="true">↗︎</span></a><span class="path-note">Fee agreed in writing before the introduction.</span></article>
+ </div></div></section>
+
 <section id="what">
   <div class="wrap">
     <div class="sec-head">
@@ -267,7 +288,7 @@
       <div class="card">
         <span class="section-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14v-3a9 9 0 0 1 18 0v3M21 16v2a3 3 0 0 1-3 3h-4"/><rect x="2" y="11" width="4" height="7" rx="2"/><rect x="18" y="11" width="4" height="7" rx="2"/></svg></span><h3>CRM &amp; customer support</h3>
         <p>Pipelines, account history, tickets and the service knowledge behind each resolution.</p>
-        <div class="tags"><span><img src="/logos/salesforce.svg" alt="" width="16" height="16">Salesforce</span><span><img src="/logos/hubspot.svg" alt="" width="16" height="16">HubSpot</span><span><img src="/logos/zendesk.svg" alt="" width="16" height="16">Zendesk</span><span><img src="/logos/intercom.svg" alt="" width="16" height="16">Intercom</span></div>
+        <div class="tags"><span><img src="/logos/salesforce.svg" alt="" width="16" height="16">Salesforce</span><span><img src="/logos/hubspot.svg" alt="" width="16" height="16">HubSpot</span><span><img src="/logos/zendesk.svg" alt="" width="16" height="16">Zendesk</span><span><img src="/logos/intercom.png" alt="" width="16" height="16">Intercom</span></div>
       </div>
       <div class="card">
         <span class="section-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6M8 13h8M8 17h6"/></svg></span><h3>Documents &amp; internal knowledge</h3>
@@ -319,6 +340,7 @@
     </div>
   </div>
 </section>
+
 
 <section id="faq">
   <div class="wrap narrow faq">

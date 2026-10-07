@@ -67,10 +67,12 @@
     .supply,.split{grid-template-columns:1fr}
   }
 </style>
-<link rel="stylesheet" href="/responsive.css?v=20261008-icons">
+<link rel="stylesheet" href="/responsive.css?v=20261008-polish">
 <script defer src="/navigation.js"></script>
+<link rel="stylesheet" href="/polish.css?v=1">
+<script defer src="/polish.js?v=1"></script>
 </head>
-<body>
+<body class="buyer-page">
 
 <header><div class="wrap">
   <a class="brand" href="/">
@@ -80,11 +82,11 @@
   <button class="menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Open menu"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 7h12M4 13h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
   <nav id="site-nav" aria-label="Main navigation">
     <a href="/">Sell your data</a>
-    <a href="/buyers/">For buyers</a>
+    <a href="/buyers/">Buy data</a>
     <a href="/refer/">Refer for $10K</a>
     <a class="btn btn-primary" href="#brief">Send a brief</a>
   </nav>
-</div></header>
+</div><div class="mobile-routes"><a href="/">Sell data</a><a href="/buyers/">Buy data</a><a href="/refer/">Refer for $10K</a></div></header>
 
 <main>
 <div class="hero hero-left wrap">
@@ -102,60 +104,16 @@
   </div>
 </div>
 
-<section>
-  <div class="wrap">
-    <div class="sec-head">
-      <h2>What you get</h2>
-      <p>Real workflows, not reconstructions. The value is in the reasoning captured while the work happened.</p>
-    </div>
-    <div class="grid2">
-      <div class="card"><h3>Real work, not model output</h3><p>Every record was produced by a company doing the work. No synthetic generation, no scraped web text relabelled as operational data.</p></div>
-      <div class="card"><h3>De-identified by default</h3><p>Names, contact details, credentials and payment data are removed or replaced before delivery. The operational sequence is preserved.</p></div>
-      <div class="card"><h3>Clean, documented rights</h3><p>Each supplying company approves the scope and permitted use. Provenance is available in diligence, so your legal review has something to read.</p></div>
-      <div class="card"><h3>Scoped, not a data dump</h3><p>You licence a defined scope for defined purposes. Non-exclusive by default; exclusivity is a separate, priced decision.</p></div>
-    </div>
-  </div>
-</section>
 
-<section id="available">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2>What's available</h2>
-      <p>Supply is sourced per brief. Tell us the shape you need and we match it against what our companies hold.</p>
-    </div>
-    <div class="supply">
-      <div class="supply-item"><span class="section-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8z"/></svg></span><h3>Work conversations</h3><p style="color:var(--muted);font-size:14px;margin:0">Threads where problems are raised, argued over and resolved, with the decision and the reasoning.</p><div class="tags"><span><img src="/logos/slack.svg" alt="" width="16" height="16">Slack</span><span><img src="/logos/microsoftteams.svg" alt="" width="16" height="16">Teams</span><span>Email</span><span>Support</span></div></div>
-      <div class="supply-item"><span class="section-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 10h18M7 15h3"/></svg></span><h3>Operations &amp; finance</h3><p style="color:var(--muted);font-size:14px;margin:0">Orders, invoices, reconciliations, ledgers, purchase orders and the exception notes around them.</p><div class="tags"><span><img src="/logos/xero.svg" alt="" width="16" height="16">Xero</span><span><img src="/logos/quickbooks.svg" alt="" width="16" height="16">QuickBooks</span><span>NetSuite</span><span><img src="/logos/sap.svg" alt="" width="16" height="16">SAP</span></div></div>
-      <div class="supply-item"><span class="section-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14v-3a9 9 0 0 1 18 0v3M21 16v2a3 3 0 0 1-3 3h-4"/><rect x="2" y="11" width="4" height="7" rx="2"/><rect x="18" y="11" width="4" height="7" rx="2"/></svg></span><h3>CRM &amp; customer support</h3><p style="color:var(--muted);font-size:14px;margin:0">Pipelines, account history, tickets and the service knowledge behind each resolution.</p><div class="tags"><span><img src="/logos/salesforce.svg" alt="" width="16" height="16">Salesforce</span><span><img src="/logos/hubspot.svg" alt="" width="16" height="16">HubSpot</span><span><img src="/logos/zendesk.svg" alt="" width="16" height="16">Zendesk</span><span><img src="/logos/intercom.svg" alt="" width="16" height="16">Intercom</span></div></div>
-      <div class="supply-item"><span class="section-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6M8 13h8M8 17h6"/></svg></span><h3>Documents &amp; knowledge</h3><p style="color:var(--muted);font-size:14px;margin:0">Contracts, reports, SOPs, decks and the operating playbooks a team wrote for itself.</p><div class="tags"><span><img src="/logos/googledrive.svg" alt="" width="16" height="16">Drive</span><span><img src="/logos/sharepoint.svg" alt="" width="16" height="16">SharePoint</span><span><img src="/logos/notion.svg" alt="" width="16" height="16">Notion</span><span><img src="/logos/docusign.svg" alt="" width="16" height="16">DocuSign</span></div></div>
-      <div class="supply-item"><span class="section-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="m7 12 3 3 7-7"/></svg></span><h3>Tasks &amp; project work</h3><p style="color:var(--muted);font-size:14px;margin:0">Tickets and project work captured end to end: the brief, the steps taken, the back-and-forth, the finished result.</p><div class="tags"><span><img src="/logos/jira.svg" alt="" width="16" height="16">Jira</span><span><img src="/logos/asana.svg" alt="" width="16" height="16">Asana</span><span>Linear</span></div></div>
-      <div class="supply-item"><h3>Sectors we're sourcing</h3><p style="color:var(--muted);font-size:14px;margin:0">Deepest supply sits in accounting, legal, healthcare administration, manufacturing, logistics and financial services.</p><div class="tags"><span>Accounting</span><span>Legal</span><span>Manufacturing</span><span>3PL</span></div></div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <div class="sec-head">
-      <h2>How a licence works</h2>
-      <p>From brief to delivery, with a sample before you commit.</p>
-    </div>
-    <div class="steps">
-      <div class="card"><div class="num">01 &middot; ONE BUSINESS DAY</div><span class="section-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="16" rx="3"/><path d="M9 5V3h6v2M8 10h8M8 14h5"/></svg></span><h3>Send a brief</h3><p>Tell us the modality, sector, volume and intended use. We reply with what we can source and what we can't.</p></div>
-      <div class="card"><div class="num">02 &middot; SAMPLE PLAN</div><span class="section-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6M8 13h8M8 17h6"/></svg></span><h3>Review the sample</h3><p>A redacted sample and a supply plan, covered by an NDA. You judge quality before anyone commits.</p></div>
-      <div class="card"><div class="num">03 &middot; SIGNED LICENCE</div><span class="section-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="m7 12 3 3 7-7"/></svg></span><h3>Licence and deliver</h3><p>Scope, permitted use, model types and duration set in writing. Delivery runs two to three weeks from an agreed scope.</p></div>
-    </div>
-  </div>
-</section>
 
 <section id="brief">
-  <div class="wrap narrow">
+  <div class="wrap">
     <div class="sec-head">
       <h2>Send a data brief</h2>
       <p>One business day to reply. Samples are de-identified and covered by an NDA.</p>
     </div>
-    <div class="panel buyerform">
-      <form id="buyer-form" novalidate>
+    <div class="form-layout"><div class="panel buyerform">
+      <form id="buyer-form">
         <div class="field">
           <label>Data types <span class="hint">Select all that apply</span></label>
           <div class="chips" id="b-types">
@@ -169,7 +127,7 @@
         </div>
         <div class="field">
           <label for="b-sector">Industries or roles</label>
-          <input id="b-sector" type="text" placeholder="e.g. accounting firms, 3PL, manufacturing">
+          <input id="b-sector" type="text" required placeholder="e.g. accounting firms, 3PL, manufacturing">
         </div>
         <div class="field">
           <label>Timeline</label>
@@ -205,8 +163,41 @@
         <div class="fine">We reply within one business day. Samples are de-identified and covered by an NDA.</div>
       </form>
     </div>
+<aside class="form-aside"><span class="small-label">BUILT FOR YOUR RESEARCH</span><h2>What you get</h2><div class="aside-benefit"><span aria-hidden="true">✓</span><div><h3>Real work, not model output</h3><p>Every record was produced by a company doing the work. No synthetic generation, no scraped web text relabelled as operational data.</p></div></div><div class="aside-benefit"><span aria-hidden="true">✓</span><div><h3>De-identified by default</h3><p>Names, contact details, credentials and payment data are removed or replaced before delivery. The operational sequence is preserved.</p></div></div><div class="aside-benefit"><span aria-hidden="true">✓</span><div><h3>Clean, documented rights</h3><p>Each supplying company approves the scope and permitted use. Provenance is available in diligence, so your legal review has something to read.</p></div></div><div class="aside-benefit"><span aria-hidden="true">✓</span><div><h3>Scoped, not a data dump</h3><p>You licence a defined scope for defined purposes. Non-exclusive by default; exclusivity is a separate, priced decision.</p></div></div></aside></div>
   </div>
 </section>
+<section id="available">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>What's available</h2>
+      <p>Supply is sourced per brief. Tell us the shape you need and we match it against what our companies hold.</p>
+    </div>
+    <div class="supply">
+      <div class="supply-item"><span class="section-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8z"/></svg></span><h3>Work conversations</h3><p style="color:var(--muted);font-size:14px;margin:0">Threads where problems are raised, argued over and resolved, with the decision and the reasoning.</p><div class="tags"><span><img src="/logos/slack.svg" alt="" width="16" height="16">Slack</span><span><img src="/logos/microsoftteams.svg" alt="" width="16" height="16">Teams</span><span>Email</span><span>Support</span></div></div>
+      <div class="supply-item"><span class="section-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 10h18M7 15h3"/></svg></span><h3>Operations &amp; finance</h3><p style="color:var(--muted);font-size:14px;margin:0">Orders, invoices, reconciliations, ledgers, purchase orders and the exception notes around them.</p><div class="tags"><span><img src="/logos/xero.svg" alt="" width="16" height="16">Xero</span><span><img src="/logos/quickbooks.svg" alt="" width="16" height="16">QuickBooks</span><span>NetSuite</span><span><img src="/logos/sap.svg" alt="" width="16" height="16">SAP</span></div></div>
+      <div class="supply-item"><span class="section-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14v-3a9 9 0 0 1 18 0v3M21 16v2a3 3 0 0 1-3 3h-4"/><rect x="2" y="11" width="4" height="7" rx="2"/><rect x="18" y="11" width="4" height="7" rx="2"/></svg></span><h3>CRM &amp; customer support</h3><p style="color:var(--muted);font-size:14px;margin:0">Pipelines, account history, tickets and the service knowledge behind each resolution.</p><div class="tags"><span><img src="/logos/salesforce.svg" alt="" width="16" height="16">Salesforce</span><span><img src="/logos/hubspot.svg" alt="" width="16" height="16">HubSpot</span><span><img src="/logos/zendesk.svg" alt="" width="16" height="16">Zendesk</span><span><img src="/logos/intercom.png" alt="" width="16" height="16">Intercom</span></div></div>
+      <div class="supply-item"><span class="section-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6M8 13h8M8 17h6"/></svg></span><h3>Documents &amp; knowledge</h3><p style="color:var(--muted);font-size:14px;margin:0">Contracts, reports, SOPs, decks and the operating playbooks a team wrote for itself.</p><div class="tags"><span><img src="/logos/googledrive.svg" alt="" width="16" height="16">Drive</span><span><img src="/logos/sharepoint.svg" alt="" width="16" height="16">SharePoint</span><span><img src="/logos/notion.svg" alt="" width="16" height="16">Notion</span><span><img src="/logos/docusign.svg" alt="" width="16" height="16">DocuSign</span></div></div>
+      <div class="supply-item"><span class="section-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="m7 12 3 3 7-7"/></svg></span><h3>Tasks &amp; project work</h3><p style="color:var(--muted);font-size:14px;margin:0">Tickets and project work captured end to end: the brief, the steps taken, the back-and-forth, the finished result.</p><div class="tags"><span><img src="/logos/jira.svg" alt="" width="16" height="16">Jira</span><span><img src="/logos/asana.svg" alt="" width="16" height="16">Asana</span><span>Linear</span></div></div>
+      <div class="supply-item"><h3>Sectors we're sourcing</h3><p style="color:var(--muted);font-size:14px;margin:0">Deepest supply sits in accounting, legal, healthcare administration, manufacturing, logistics and financial services.</p><div class="tags"><span>Accounting</span><span>Legal</span><span>Manufacturing</span><span>3PL</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>How a licence works</h2>
+      <p>From brief to delivery, with a sample before you commit.</p>
+    </div>
+    <div class="steps">
+      <div class="card"><div class="num">01 &middot; ONE BUSINESS DAY</div><span class="section-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="16" rx="3"/><path d="M9 5V3h6v2M8 10h8M8 14h5"/></svg></span><h3>Send a brief</h3><p>Tell us the modality, sector, volume and intended use. We reply with what we can source and what we can't.</p></div>
+      <div class="card"><div class="num">02 &middot; SAMPLE PLAN</div><span class="section-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6M8 13h8M8 17h6"/></svg></span><h3>Review the sample</h3><p>A redacted sample and a supply plan, covered by an NDA. You judge quality before anyone commits.</p></div>
+      <div class="card"><div class="num">03 &middot; SIGNED LICENCE</div><span class="section-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="m7 12 3 3 7-7"/></svg></span><h3>Licence and deliver</h3><p>Scope, permitted use, model types and duration set in writing. Delivery runs two to three weeks from an agreed scope.</p></div>
+    </div>
+  </div>
+</section>
+
+
 
 <section id="faq">
   <div class="wrap narrow faq">
