@@ -92,3 +92,43 @@ label{font-size:15px}
   .panel,.result{padding:16px}
   .result .val{font-size:30px}
 }
+
+/* Recognizable sources, consistent category icons and readable text measures. */
+#sys{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+#sys .system-choice{display:flex;align-items:center;gap:10px;text-align:left;border-radius:14px;padding:10px 12px;min-height:54px;font-size:14px;line-height:1.4}
+.system-choice>span:last-child{min-width:0;overflow-wrap:anywhere}
+.brand-mark{display:inline-flex;align-items:center;justify-content:center;flex:0 0 30px;width:30px;height:30px;border-radius:8px;background:#fff}
+.brand-mark img{width:20px;height:20px;object-fit:contain}
+#sys .system-choice.on{background:#f0f7f4;color:var(--ink);border-color:#128567;box-shadow:0 0 0 1px #128567}
+#sys .system-choice.on::after{content:'✓';color:#08785d;margin-left:auto;font-weight:700}
+.section-icon{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink2);margin-bottom:18px;flex-shrink:0}
+.section-icon svg{width:21px;height:21px}
+.steps .card{position:relative;padding-top:28px}
+.steps .card .section-icon{float:right;margin-top:-34px;margin-left:12px}
+.steps .card h3{clear:both;padding-top:8px}
+.tags span{display:inline-flex;align-items:center;gap:6px;line-height:1.4;padding:6px 9px;border-radius:8px;background:#fff}
+.tags img{width:16px;height:16px;object-fit:contain;flex-shrink:0}
+.card p,.supply-item p{max-width:52ch;text-wrap:pretty}
+.hero p,.sec-head p,.result .note,.faq p{text-wrap:pretty}
+.sec-head h2{max-width:24ch;margin-left:auto;margin-right:auto}
+.sec-head p{max-width:58ch;margin-left:auto;margin-right:auto}
+#value .sec-head p{max-width:48ch}
+label .hint{display:block;margin-top:4px;font-size:13px;line-height:1.5}
+#what .grid2 .card{display:flex;flex-direction:column;align-items:flex-start}
+#what .grid2 .tags{margin-top:auto;padding-top:20px}
+@media(min-width:901px){
+ #value .sec-head,#how .sec-head,#what .sec-head{display:grid;grid-template-columns:1.25fr .85fr;gap:32px;max-width:none;text-align:left;align-items:end;margin-bottom:32px}
+ #value .sec-head h2,#how .sec-head h2,#what .sec-head h2{margin:0;max-width:22ch}
+ #value .sec-head p,#how .sec-head p,#what .sec-head p{margin:0;max-width:44ch;font-size:16px}
+ #what .grid2 .card{padding:28px}
+}
+@media(max-width:900px){
+ .sec-head h2,.sec-head p{margin-left:0;margin-right:0}
+ #sys .system-choice{gap:8px;padding:10px;font-size:13px}
+ .section-icon{margin-bottom:14px}
+ #what .grid2 .tags{padding-top:16px}
+}
+@media(max-width:359px){
+ #sys{grid-template-columns:1fr}
+ #sys .system-choice{font-size:14px}
+}
