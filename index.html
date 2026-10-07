@@ -128,6 +128,7 @@ h2{font-size:clamp(28px,3.2vw,38px);letter-spacing:-.025em;font-weight:600;margi
 .sec-head p{color:var(--muted);font-size:17px;margin:0}
 
 .calc{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:start}
+.calc > *{min-width:0}
 .panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px}
 label{display:block;font-size:13.5px;font-weight:500;color:var(--ink2);margin-bottom:8px}
 label .hint{font-weight:400;color:var(--dim)}
@@ -227,7 +228,8 @@ footer{border-top:1px solid var(--line2);padding:40px 0;color:var(--dim);font-si
 footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
 
 @media(max-width:900px){
-  .calc{grid-template-columns:1fr}.result{position:static}
+  .calc{grid-template-columns:minmax(0,1fr)}.result{position:static}
+  #seg-rev{display:grid;grid-template-columns:repeat(3,1fr)}
   .steps,.grid2,.trustgrid{grid-template-columns:1fr}
   .formgrid{grid-template-columns:1fr}
   nav a:not(.btn){display:none}
