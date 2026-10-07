@@ -2,7 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="SellMyCompanyData">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="format-detection" content="telephone=no">
 <title>Sell My Company Data | Get paid for the record your business already creates</title>
 <meta name="description" content="AI labs pay for the operating record inside your business. Free valuation in 60 seconds, de-identified before anything moves, paid in 7 days.">
 <link rel="canonical" href="https://sellmycompanydata.com/">
@@ -53,6 +59,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700&display=swap" rel="stylesheet">
+<!-- Cloudflare Web Analytics (no cookies, no consent banner needed) -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "9be904b9d4cc49a1a1bfdaea47fd9573"}'></script>
+<!-- End Cloudflare Web Analytics -->
 <style>
 :root{
   --bg:#ffffff;
@@ -73,7 +82,12 @@ body{
   margin:0;background:var(--bg);color:var(--ink);
   font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;
+  -webkit-tap-highlight-color:transparent;
+  -webkit-overflow-scrolling:touch;
+  text-rendering:optimizeLegibility;
 }
+button,.chip,.seg button{touch-action:manipulation}
+::selection{background:#d7f2ea}
 a{color:inherit;text-decoration:none}
 .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
 .narrow{max-width:720px;margin:0 auto}
@@ -167,6 +181,48 @@ select:focus,input:focus{border-color:#b4b4bb;box-shadow:0 0 0 3px rgba(13,13,13
 .form-msg.ok{background:#ecfdf5;color:#047857;border:1px solid #a7f3d0}
 .form-msg.err{background:#fef2f2;color:#b91c1c;border:1px solid #fecaca}
 
+/* ---------- segmented control (app-style picker) ---------- */
+.seg{display:flex;gap:5px;background:var(--surface);border:1px solid var(--line2);border-radius:12px;padding:5px}
+.seg button{
+  appearance:none;-webkit-appearance:none;border:0;background:transparent;flex:1 1 0;min-width:0;
+  font:500 13px/1.2 Inter,sans-serif;color:var(--muted);padding:12px 4px;border-radius:8px;
+  cursor:pointer;min-height:44px;transition:background .16s,color .16s,box-shadow .16s;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.seg button.on{background:#fff;color:var(--ink);box-shadow:0 1px 2px rgba(13,13,13,.10),0 0 0 1px rgba(13,13,13,.04)}
+.seg button:active{transform:scale(.98)}
+
+/* ---------- logo wall ---------- */
+.logoband{padding:52px 0;border-top:1px solid var(--line2)}
+.logoband-label{text-align:center;color:var(--muted);font-size:14px;font-weight:500;margin:0 0 26px;letter-spacing:-.005em}
+.logowall{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:12px}
+.logotile{display:flex;align-items:center;justify-content:center;height:74px;border:1px solid var(--line);
+  border-radius:14px;background:#fff;transition:border-color .15s,box-shadow .15s}
+.logotile:hover{border-color:#d8d8dd;box-shadow:0 1px 3px rgba(13,13,13,.05)}
+.logotile img{height:26px;width:auto;max-width:104px;object-fit:contain}
+.logowall-note{text-align:center;color:var(--dim);font-size:13px;margin-top:22px}
+
+/* ---------- mobile app bar ---------- */
+.appbar{
+  position:fixed;left:0;right:0;bottom:0;z-index:60;display:none;
+  background:rgba(255,255,255,.93);backdrop-filter:saturate(180%) blur(16px);
+  border-top:1px solid var(--line2);
+  padding:10px 16px calc(10px + env(safe-area-inset-bottom));
+  transform:translateY(110%);transition:transform .28s cubic-bezier(.32,.72,0,1);
+}
+.appbar.show{transform:translateY(0)}
+.appbar-inner{display:flex;align-items:center;gap:12px;max-width:var(--max);margin:0 auto}
+.appbar .est{flex:1 1 auto;min-width:0}
+.appbar .est .k{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--dim);font-weight:500}
+.appbar .est .v{font-size:17px;font-weight:600;letter-spacing:-.02em;line-height:1.2}
+.appbar .btn{flex:0 0 auto}
+
+@media(max-width:900px){
+  .logowall{grid-template-columns:repeat(3,1fr);gap:10px}
+  .logotile{height:66px}
+  .logotile img{height:22px;max-width:88px}
+}
+
 footer{border-top:1px solid var(--line2);padding:40px 0;color:var(--dim);font-size:13.5px}
 footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
 
@@ -175,8 +231,24 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:1
   .steps,.grid2,.trustgrid{grid-template-columns:1fr}
   .formgrid{grid-template-columns:1fr}
   nav a:not(.btn){display:none}
-  .hero{padding:64px 0 48px}
-  section{padding:64px 0}
+  .hero{padding:56px 0 40px}
+  section{padding:56px 0}
+  .appbar{display:block}
+  body{padding-bottom:calc(76px + env(safe-area-inset-bottom))}
+  h1{letter-spacing:-.028em}
+  .hero .trust{gap:10px 18px;font-size:13px}
+  .panel,.result{padding:20px}
+  .card{padding:20px}
+  .wrap{padding:0 18px}
+  .chip{padding:10px 14px;font-size:14px;min-height:42px;display:inline-flex;align-items:center}
+  select,input{min-height:48px;font-size:16px}
+  .btn-lg{padding:16px 24px}
+  footer .wrap{flex-direction:column;align-items:flex-start;gap:8px}
+  .faq summary{padding:2px 0}
+}
+@media(prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+  html{scroll-behavior:auto}
 }
 </style>
 </head>
@@ -196,6 +268,16 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:1
   </nav>
 </div></header>
 
+<div class="appbar" id="appbar">
+  <div class="appbar-inner">
+    <div class="est">
+      <div class="k">Estimated payout</div>
+      <div class="v" id="appbar-v">$103K &ndash; $144K</div>
+    </div>
+    <a class="btn btn-primary" id="appbar-btn" href="#apply">Book a call</a>
+  </div>
+</div>
+
 <div class="hero wrap" id="top">
   <div class="eyebrow"><i></i>AI labs are buying the record of how real businesses run</div>
   <h1>Your company's data is worth<br><em>more than you think.</em></h1>
@@ -211,6 +293,31 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:1
   </div>
 </div>
 
+<section class="logoband">
+  <div class="wrap">
+    <p class="logoband-label">Connects to the tools your team already runs on</p>
+    <div class="logowall">
+      <div class="logotile"><img src="/logos/salesforce.svg" alt="Salesforce" loading="lazy" width="104" height="26"></div>
+      <div class="logotile"><img src="/logos/hubspot.svg" alt="HubSpot" loading="lazy" width="104" height="26"></div>
+      <div class="logotile"><img src="/logos/slack.svg" alt="Slack" loading="lazy" width="104" height="26"></div>
+      <div class="logotile"><img src="/logos/microsoftteams.svg" alt="Microsoft Teams" loading="lazy" width="104" height="26"></div>
+      <div class="logotile"><img src="/logos/gmail.svg" alt="Gmail" loading="lazy" width="104" height="26"></div>
+      <div class="logotile"><img src="/logos/outlook.svg" alt="Microsoft Outlook" loading="lazy" width="104" height="26"></div>
+      <div class="logotile"><img src="/logos/xero.svg" alt="Xero" loading="lazy" width="104" height="26"></div>
+      <div class="logotile"><img src="/logos/quickbooks.svg" alt="QuickBooks" loading="lazy" width="104" height="26"></div>
+      <div class="logotile"><img src="/logos/sap.svg" alt="SAP" loading="lazy" width="104" height="26"></div>
+      <div class="logotile"><img src="/logos/zendesk.svg" alt="Zendesk" loading="lazy" width="104" height="26"></div>
+      <div class="logotile"><img src="/logos/intercom.svg" alt="Intercom" loading="lazy" width="104" height="26"></div>
+      <div class="logotile"><img src="/logos/jira.svg" alt="Jira" loading="lazy" width="104" height="26"></div>
+      <div class="logotile"><img src="/logos/googledrive.svg" alt="Google Drive" loading="lazy" width="104" height="26"></div>
+      <div class="logotile"><img src="/logos/sharepoint.svg" alt="SharePoint" loading="lazy" width="104" height="26"></div>
+      <div class="logotile"><img src="/logos/notion.svg" alt="Notion" loading="lazy" width="104" height="26"></div>
+      <div class="logotile"><img src="/logos/asana.svg" alt="Asana" loading="lazy" width="104" height="26"></div>
+    </div>
+    <p class="logowall-note">Read-only access. Nothing leaves your systems until you approve the scope.</p>
+  </div>
+</section>
+
 <section id="value">
   <div class="wrap">
     <div class="sec-head">
@@ -221,24 +328,26 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:1
       <div class="panel">
         <div class="field">
           <label>Full-time employees</label>
-          <select id="emp">
-            <option value="0.5">Fewer than 10</option>
-            <option value="1" selected>10 &ndash; 50</option>
-            <option value="1.5">50 &ndash; 200</option>
-            <option value="2">200 &ndash; 1,000</option>
-            <option value="3">1,000+</option>
-          </select>
+          <div class="seg" id="seg-emp" role="group" aria-label="Full-time employees">
+            <button type="button" data-v="0.5">&lt;10</button>
+            <button type="button" data-v="1" class="on">10&ndash;50</button>
+            <button type="button" data-v="1.5">50&ndash;200</button>
+            <button type="button" data-v="2">200&ndash;1k</button>
+            <button type="button" data-v="3">1k+</button>
+          </div>
+          <input type="hidden" id="emp" value="1">
         </div>
         <div class="field">
           <label>Annual revenue</label>
-          <select id="rev">
-            <option value="0.3">Pre-revenue</option>
-            <option value="0.8">$0 &ndash; $1M</option>
-            <option value="1.5" selected>$1M &ndash; $10M</option>
-            <option value="2.5">$10M &ndash; $50M</option>
-            <option value="3.5">$50M &ndash; $200M</option>
-            <option value="5">$200M+</option>
-          </select>
+          <div class="seg" id="seg-rev" role="group" aria-label="Annual revenue">
+            <button type="button" data-v="0.3">Pre-rev</button>
+            <button type="button" data-v="0.8">$0&ndash;1M</button>
+            <button type="button" data-v="1.5" class="on">$1&ndash;10M</button>
+            <button type="button" data-v="2.5">$10&ndash;50M</button>
+            <button type="button" data-v="3.5">$50&ndash;200M</button>
+            <button type="button" data-v="5">$200M+</button>
+          </div>
+          <input type="hidden" id="rev" value="1.5">
         </div>
         <div class="field">
           <label>Year founded</label>
@@ -435,10 +544,50 @@ function calc(){
   document.getElementById('range').textContent = money(low)+' \u2013 '+money(high);
   var er = document.getElementById('estimate-range');
   if (er) er.value = document.getElementById('range').textContent;
+  var av = document.getElementById('appbar-v');
+  if (av) av.textContent = document.getElementById('range').textContent;
   document.getElementById('bar').style.width = Math.max(6,Math.min(100,(raw/20.5)*100)).toFixed(0)+'%';
 }
 ['emp','rev','ind','yr'].forEach(function(id){ document.getElementById(id).addEventListener('change',calc); });
 calc();
+
+// segmented pickers (app-style)
+[['seg-emp','emp'],['seg-rev','rev']].forEach(function(p){
+  var seg = document.getElementById(p[0]), input = document.getElementById(p[1]);
+  if (!seg || !input) return;
+  seg.addEventListener('click', function(e){
+    var b = e.target && e.target.closest ? e.target.closest('button') : null;
+    if (!b || !seg.contains(b)) return;
+    var btns = seg.querySelectorAll('button');
+    for (var i = 0; i < btns.length; i++) btns[i].classList.remove('on');
+    b.classList.add('on');
+    input.value = b.getAttribute('data-v');
+    calc();
+  });
+});
+
+// mobile app bar (thumb-reachable CTA)
+(function(){
+  var bar = document.getElementById('appbar');
+  if (!bar) return;
+  var apply = document.getElementById('apply');
+  var ticking = false;
+  function sync(){
+    ticking = false;
+    var y = window.pageYOffset || document.documentElement.scrollTop || 0;
+    var inApply = false;
+    if (apply) {
+      var r = apply.getBoundingClientRect();
+      inApply = r.top < window.innerHeight * 0.85 && r.bottom > 0;
+    }
+    bar.classList.toggle('show', y > 420 && !inApply);
+  }
+  function onScroll(){ if (!ticking) { ticking = true; window.requestAnimationFrame(sync); } }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  window.addEventListener('load', sync);
+  sync();
+})();
 
 // lead form
 (function(){
