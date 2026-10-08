@@ -103,9 +103,6 @@ label{font-size:15px}
 #sys .system-choice.on::after{content:'✓';color:#08785d;margin-left:auto;font-weight:700}
 .section-icon{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink2);margin-bottom:18px;flex-shrink:0}
 .section-icon svg{width:21px;height:21px}
-.steps .card{position:relative;padding-top:28px}
-.steps .card .section-icon{float:right;margin-top:-34px;margin-left:12px}
-.steps .card h3{clear:both;padding-top:8px}
 .tags span{display:inline-flex;align-items:center;gap:6px;line-height:1.4;padding:6px 9px;border-radius:8px;background:#fff}
 .tags img{width:16px;height:16px;object-fit:contain;flex-shrink:0}
 .card p,.supply-item p{max-width:52ch;text-wrap:pretty}

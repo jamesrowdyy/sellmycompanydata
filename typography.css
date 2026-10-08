@@ -24,3 +24,29 @@ header nav a,.mobile-routes a{font-size:var(--type-small);line-height:1.5}
  .brand{font-size:15px}
 }
 @media(max-width:359px){:root{--type-hero:32px}.mobile-routes a{padding-left:4px;padding-right:4px}}
+
+/* Card anatomy: metadata, icon + heading, body, optional source badges. */
+.card-heading{display:flex;align-items:center;gap:12px;width:100%;margin:0 0 16px;min-height:40px}
+.card-heading .section-icon{margin:0;float:none;flex:0 0 40px;width:40px;height:40px;border-radius:12px}
+.card-heading h3{margin:0;padding:0;clear:none;min-width:0;font-size:18px;line-height:1.35;letter-spacing:-.015em}
+.steps{align-items:stretch;gap:20px}
+.steps .card{padding:28px;display:flex;flex-direction:column}
+.step-meta{display:flex;align-items:center;gap:10px;margin-bottom:24px;min-height:32px}
+.step-number{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;flex:0 0 32px;border-radius:50%;background:#edf4f0;color:#245d47;font-size:16px;line-height:1;font-weight:600;font-variant-numeric:tabular-nums}
+.step-caption{font-size:14px;line-height:1.4;font-weight:500;color:var(--muted)}
+.steps .card .card-heading{margin-bottom:16px}
+.steps .card .section-icon{margin:0;float:none}
+.steps .card h3{padding:0;clear:none;font-size:20px;line-height:1.3;margin:0}
+.steps .card p{font-size:16px;line-height:1.6;margin:0}
+#what .grid2 .card{padding:28px}
+#what .grid2 .tags{padding-top:20px}
+.trustgrid .card-heading{gap:10px;align-items:center}
+.trustgrid .card-heading h3{font-size:18px}
+@media(max-width:900px){
+ .steps .card,#what .grid2 .card{padding:24px}
+ .steps{gap:16px}
+ .step-meta{margin-bottom:20px}
+ .card-heading{gap:12px}
+ .steps .card h3{font-size:20px}
+}
+@media(max-width:359px){.steps .card,#what .grid2 .card{padding:20px}}
