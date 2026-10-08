@@ -1,9 +1,14 @@
 /* Shared mobile app shell. Desktop keeps its two-column calculator. */
+.mobile-heading{display:none}
 @media(min-width:901px){
   .calc>.panel{grid-column:1;grid-row:1}
   .calc>.result{grid-column:2;grid-row:1}
 }
 @media(max-width:900px){
+  .desktop-heading{display:none}
+  .mobile-heading{display:inline}
+  .seller-page .hero h1{text-wrap:balance}
+  .seller-page .exchange-hero.hero{padding-top:24px;padding-bottom:24px}
   html{scroll-padding-top:84px;scroll-padding-bottom:90px}
   html:has(.appbar.show){scroll-padding-top:156px}
   body,body:has(.appbar){padding-bottom:calc(76px + env(safe-area-inset-bottom))}
