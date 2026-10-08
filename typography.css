@@ -50,3 +50,10 @@ header nav a,.mobile-routes a{font-size:var(--type-small);line-height:1.5}
  .steps .card h3{font-size:20px}
 }
 @media(max-width:359px){.steps .card,#what .grid2 .card{padding:20px}}
+
+/* Compact category icons retain room for two-line business names. */
+.business-card .card-heading{gap:10px;min-height:49px;margin-bottom:12px}
+.business-card .card-heading .section-icon{width:28px;height:28px;flex-basis:28px;border:0;border-radius:0;background:transparent;color:#245d47}
+.business-card .section-icon svg{width:23px;height:23px}
+.business-card .card-heading h3{margin:0;overflow-wrap:normal}
+@media(min-width:901px){.business-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
