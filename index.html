@@ -97,7 +97,7 @@
   <div class="appbar-inner">
     <div class="est">
       <div class="k">Estimated payout</div>
-      <div class="v" id="appbar-v">$103K &ndash; $144K</div>
+      <div class="v" id="appbar-v">$29K &ndash; $41.5K</div>
     </div>
     <a class="btn btn-primary" id="appbar-btn" href="#apply">Book a call</a>
   </div>
@@ -154,32 +154,26 @@
   <div class="wrap">
     <div class="sec-head">
       <h2>Estimate what your data could licence for</h2>
-      <p>Five questions. The estimate updates as you go. Nothing is uploaded and nothing is stored.</p>
+      <p>Enter your employee count, annual revenue and year founded for an instant estimate. Industry and systems help us prepare for your call.</p>
     </div>
     <div class="calc">
       <div class="panel">
         <div class="field">
-          <label>Full-time employees</label>
-          <div class="seg" id="seg-emp" role="group" aria-label="Full-time employees">
-            <button type="button" data-v="0.5">&lt;10</button>
-            <button type="button" data-v="1" class="on">10&ndash;50</button>
-            <button type="button" data-v="1.5">50&ndash;200</button>
-            <button type="button" data-v="2">200&ndash;1K</button>
-            <button type="button" data-v="3">1K+</button>
-          </div>
-          <input type="hidden" id="emp" value="1">
+          <label for="emp">Full-time employees</label>
+          <input id="emp" type="number" min="1" step="1" inputmode="numeric" placeholder="e.g. 24">
         </div>
         <div class="field">
-          <label>Annual revenue</label>
-          <div class="seg" id="seg-rev" role="group" aria-label="Annual revenue">
-            <button type="button" data-v="0.3">Pre-rev</button>
-            <button type="button" data-v="0.8">$0&ndash;1M</button>
-            <button type="button" data-v="1.5" class="on">$1&ndash;10M</button>
-            <button type="button" data-v="2.5">$10&ndash;50M</button>
-            <button type="button" data-v="3.5">$50&ndash;200M</button>
-            <button type="button" data-v="5">$200M+</button>
-          </div>
-          <input type="hidden" id="rev" value="1.5">
+          <label for="rev">Annual revenue</label>
+          <select id="rev">
+            <option value="">Select revenue</option>
+            <option value="pre">Pre-revenue</option>
+            <option value="0-1m">$0–1M</option>
+            <option value="1-10m">$1–10M</option>
+            <option value="10-50m">$10–50M</option>
+            <option value="50-200m">$50–200M</option>
+            <option value="200m+">$200M+</option>
+            <option value="undisclosed">Prefer not to say</option>
+          </select>
         </div>
         <div class="field">
           <label for="yr">Year founded</label>
@@ -221,7 +215,7 @@
 
       <div class="result">
         <div class="k">Estimated payout range</div>
-        <div class="val" id="range">$103K &ndash; $144K</div>
+        <div class="val" id="range">$29K &ndash; $41.5K</div>
         <div class="bar"><i id="bar"></i></div>
         <div class="note">Directional only. The final figure depends on your data sources, volume, quality, access terms and due diligence.</div>
         <a class="btn btn-primary btn-block" href="#apply">Book a valuation call</a>
@@ -313,10 +307,10 @@
   <div class="wrap narrow">
     <div class="sec-head">
       <h2>Book a valuation call</h2>
-      <p>Two minutes. We reply within one business day.</p>
+      <p>Share your details, then choose a time for a free 5-minute call with James.</p>
     </div>
     <div class="panel">
-      <form id="lead-form" novalidate>
+      <form id="lead-form">
         <div class="formgrid">
           <div class="field" style="margin:0"><label for="first-name">First name</label><input id="first-name" type="text" placeholder="Jane" autocomplete="given-name" required></div>
           <div class="field" style="margin:0"><label for="last-name">Last name</label><input id="last-name" type="text" placeholder="Cooper" autocomplete="family-name"></div>
@@ -327,11 +321,17 @@
         <input type="hidden" id="estimate-range" name="range">
         <input type="text" id="_gotcha" name="_gotcha" style="position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div style="margin-top:22px">
-          <button type="submit" class="btn btn-primary btn-lg btn-block" id="lead-submit">Request my valuation</button>
+          <button type="submit" class="btn btn-primary btn-lg btn-block" id="lead-submit">Continue to booking</button>
         </div>
-        <div id="lead-msg"></div>
+        <div id="lead-msg" role="status" aria-live="polite"></div>
         <div class="fine">We use these details to prepare your estimate. No newsletters.</div>
       </form>
+      <div id="booking" hidden>
+        <h3>Choose a time with James</h3>
+        <p>Your details are saved. Select a time below to confirm your free call.</p>
+        <iframe id="booking-calendar" title="Book a free 5-minute call with James" style="width:100%;height:720px;border:0;border-radius:16px" loading="lazy"></iframe>
+      </div>
+      <p class="fine"><a id="booking-link" href="https://cal.com/jamesrowdy/5min" target="_blank" rel="noopener">Open the booking calendar directly ↗</a></p>
     </div>
   </div>
 </section>
@@ -355,57 +355,33 @@
   <div><a href="mailto:hello@sellmycompanydata.com">hello@sellmycompanydata.com</a></div>
 </div></footer>
 
+<script src="/valuation.js?v=1"></script>
 <script>
 (function(){
-  var y=document.getElementById('yr'), html='';
-  for(var i=2026;i>=1900;i--){ html += '<option value="'+i+'"'+(i===2015?' selected':'')+'>'+i+'</option>'; }
-  y.innerHTML = '<option value="0">Before 1900</option>'+html;
+  var y=document.getElementById('yr');
+  y.add(new Option('Select year', ''));
+  for(var i=new Date().getFullYear();i>=1900;i--) y.add(new Option(String(i),String(i)));
+  y.add(new Option('Before 1900','pre-1900'));
 })();
-
 var chips=[].slice.call(document.querySelectorAll('#sys .chip'));
-chips.forEach(function(c){ c.addEventListener('click',function(){ c.classList.toggle('on'); calc(); }); });
-
-function money(n){
-  if(n>=1e6) return '$'+(n/1e6).toFixed(n/1e6>=2?1:2).replace(/\.0$/,'')+'M';
-  if(n>=1e3) return '$'+Math.round(n/1e3)+'K';
-  return '$'+Math.round(n);
-}
+chips.forEach(function(c){ c.addEventListener('click',function(){ c.classList.toggle('on'); }); });
 function calc(){
-  var emp=parseFloat(document.getElementById('emp').value);
-  var rev=parseFloat(document.getElementById('rev').value);
-  var ind=parseFloat(document.getElementById('ind').value);
-  var founded=parseInt(document.getElementById('yr').value,10);
-  var years = founded===0 ? 40 : Math.max(1, 2026-founded);
-  var yearsScore = Math.min(years,25)/25*1.5;
-  var sysCount = chips.filter(function(c){return c.classList.contains('on');}).length;
-  var sysScore = Math.min(sysCount,6)*0.35;
-  var raw = (emp*1.2 + rev*1.5 + yearsScore + sysScore) * ind;
-  var low = 25000 + Math.pow(Math.max(raw,0.3),2.1)*4000;
-  var high = low*1.4;
-  document.getElementById('range').textContent = money(low)+' \u2013 '+money(high);
-  var er = document.getElementById('estimate-range');
-  if (er) er.value = document.getElementById('range').textContent;
-  var av = document.getElementById('appbar-v');
-  if (av) av.textContent = document.getElementById('range').textContent;
-  document.getElementById('bar').style.width = Math.max(6,Math.min(100,(raw/20.5)*100)).toFixed(0)+'%';
-}
-['emp','rev','ind','yr'].forEach(function(id){ document.getElementById(id).addEventListener('change',calc); });
-calc();
-
-// segmented pickers (app-style)
-[['seg-emp','emp'],['seg-rev','rev']].forEach(function(p){
-  var seg = document.getElementById(p[0]), input = document.getElementById(p[1]);
-  if (!seg || !input) return;
-  seg.addEventListener('click', function(e){
-    var b = e.target && e.target.closest ? e.target.closest('button') : null;
-    if (!b || !seg.contains(b)) return;
-    var btns = seg.querySelectorAll('button');
-    for (var i = 0; i < btns.length; i++) btns[i].classList.remove('on');
-    b.classList.add('on');
-    input.value = b.getAttribute('data-v');
-    calc();
+  var result = DataValuation.estimate({
+    employees: document.getElementById('emp').value,
+    revenue: document.getElementById('rev').value,
+    founded: document.getElementById('yr').value
   });
+  var range = DataValuation.format(result.low)+' – '+DataValuation.format(result.high);
+  document.getElementById('range').textContent = range;
+  document.getElementById('estimate-range').value = range;
+  var av = document.getElementById('appbar-v');
+  if(av) av.textContent = range;
+  document.getElementById('bar').style.width = Math.max(6,Math.min(100,result.low/432*100))+'%';
+}
+['emp','rev','yr'].forEach(function(id){
+  ['input','change'].forEach(function(event){ document.getElementById(id).addEventListener(event,calc); });
 });
+calc();
 
 // mobile app bar (thumb-reachable CTA)
 (function(){
@@ -458,8 +434,18 @@ calc();
     }).then(function(res){
       if (res.ok && res.d.ok) {
         msg.className = 'form-msg ok';
-        msg.textContent = "Thanks, we've received your details. We reply within one business day.";
-        form.reset();
+        msg.textContent = "Your details are saved. Choose a time below to confirm your call.";
+        var bookingUrl = new URL('https://cal.com/jamesrowdy/5min');
+        bookingUrl.searchParams.set('name', (payload.firstName+' '+payload.lastName).trim());
+        bookingUrl.searchParams.set('email', payload.email);
+        var bookingLink = document.getElementById('booking-link');
+        bookingLink.href = bookingUrl.toString();
+        bookingUrl.searchParams.set('embed', 'true');
+        document.getElementById('booking-calendar').src = bookingUrl.toString();
+        document.getElementById('booking').hidden = false;
+        form.hidden = true;
+        document.querySelector('#apply .wrap').classList.remove('narrow');
+        document.getElementById('booking').scrollIntoView({behavior:'smooth',block:'start'});
       } else if (res.d && res.d.error === 'invalid_email') {
         msg.className = 'form-msg err';
         msg.textContent = 'Please check your email address.';
@@ -471,7 +457,7 @@ calc();
       msg.className = 'form-msg err';
       msg.textContent = 'Network error. Please try again.';
     }).finally(function(){
-      btn.disabled = false; btn.textContent = 'Request my valuation';
+      btn.disabled = false; btn.textContent = 'Continue to booking';
     });
   });
 })();
