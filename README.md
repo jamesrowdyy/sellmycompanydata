@@ -38,3 +38,19 @@ need verification: see [backend activation](docs/backend-activation.md).
 Browser regression checks: install Python Playwright and Chromium, then run
 `python tests/audit_flows.py`. API requests are intercepted; tests do not create
 real leads or bookings. Set `SITE_TEST_URL` to check a deployed site.
+
+## Analytics and search
+
+Public discovery content lives in `data-licensing/`, `data-valuation/`,
+`robots.txt`, `sitemap.xml`, `llms.txt` and `llms-full.txt`. Schema describes the
+visible pages and FAQ answers; do not add invented reviews, clients or prices.
+
+`analytics.js` provides consent-gated GA4/PostHog event transport. Providers are
+disabled while `analytics-config.js` identifiers are empty. Account activation,
+Google ownership verification and end-to-end delivery are separate steps; see
+[analytics and search setup](docs/analytics-and-search.md).
+
+Verification: `python tests/discovery_analytics.py` checks metadata, structured
+FAQ parity, links, sitemap, all seven page layouts, consent and event privacy.
+After a production deploy, `python scripts/submit_indexnow.py` notifies IndexNow
+of the published sitemap URLs; it does not guarantee indexing.

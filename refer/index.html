@@ -30,17 +30,116 @@
 {
   "@context": "https://schema.org",
   "@graph": [
-    {"@type": "Organization", "name": "Sell My Company Data", "url": "https://sellmycompanydata.com/",
-     "description": "We help companies license their operating data to AI labs."},
-    {"@type": "WebPage", "name": "Refer a business, earn a fee", "url": "https://sellmycompanydata.com/refer/",
-     "description": "Introduce a business with valuable operating data to Sell My Company Data and earn a referral fee on every completed licence."},
-    {"@type": "FAQPage", "mainEntity": [
-      {"@type": "Question", "name": "How much is the referral fee?", "acceptedAnswer": {"@type": "Answer", "text": "$10,000 flat for every referred business that completes a licence. The amount is confirmed in writing before you make the introduction."}},
-      {"@type": "Question", "name": "When is the referral fee paid?", "acceptedAnswer": {"@type": "Answer", "text": "Once the licence completes and the supplying company has been paid. Payment timing is confirmed in the written referral terms."}},
-      {"@type": "Question", "name": "Do I need to work at the company I refer?", "acceptedAnswer": {"@type": "Answer", "text": "No. Anyone can refer a business: a supplier, a customer, an advisor, an accountant or a friend who runs one."}},
-      {"@type": "Question", "name": "What kind of business is worth referring?", "acceptedAnswer": {"@type": "Answer", "text": "Any business with real operating history and a few years of records. Accounting firms, law firms, manufacturers, logistics operators, healthcare administrators, financial services and professional services tend to carry the most value."}},
-      {"@type": "Question", "name": "Does the business have to agree?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. We only contact a company once, and they choose whether to engage. Nothing is shared or transferred without their written approval."}}
-    ]}
+    {
+      "@type": "Organization",
+      "@id": "https://sellmycompanydata.com/#organization",
+      "name": "Sell My Company Data",
+      "url": "https://sellmycompanydata.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://sellmycompanydata.com/assets/brand/horizontal-ink.svg"
+      },
+      "description": "Business data licensing and indicative valuation for companies, AI labs and research teams."
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://sellmycompanydata.com/#website",
+      "name": "Sell My Company Data",
+      "url": "https://sellmycompanydata.com/",
+      "publisher": {
+        "@id": "https://sellmycompanydata.com/#organization"
+      },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://sellmycompanydata.com/refer/#webpage",
+      "url": "https://sellmycompanydata.com/refer/",
+      "name": "Refer a Business for a $10,000 Fee | Sell My Company Data",
+      "description": "Introduce a company with valuable operating data. Earn $10,000 per completed licence, with the referral fee agreed in writing.",
+      "isPartOf": {
+        "@id": "https://sellmycompanydata.com/#website"
+      },
+      "about": {
+        "@id": "https://sellmycompanydata.com/#organization"
+      },
+      "inLanguage": "en",
+      "breadcrumb": {
+        "@id": "https://sellmycompanydata.com/refer/#breadcrumb"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://sellmycompanydata.com/refer/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://sellmycompanydata.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Refer a business. Earn $10,000.",
+          "item": "https://sellmycompanydata.com/refer/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://sellmycompanydata.com/refer/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How much is the referral fee?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A flat $10,000 for every referred business that completes a licence. The amount is confirmed in writing before you make the introduction, so you always know the number up front."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "When do I get paid?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Once the licence completes and the supplying company has been paid. The timing is set out in the written referral terms."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need to work at the company?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Anyone can refer a business: a supplier, a customer, an advisor, an accountant, or a friend who runs one."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What if they say no?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nothing happens. We reach out once, and if they're not interested we stop. No fee is owed and there's no cost to you either way."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I refer more than one business?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, and it's encouraged. Send as many as you like through the form."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you contact them without my knowledge?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. We confirm your referral terms with you first, then make one approach. You're told what happens at each stage."
+          }
+        }
+      ]
+    }
   ]
 }
 </script>
@@ -73,6 +172,10 @@
 <script defer src="/site-events.js?v=1"></script>
 <meta property="og:image:alt" content="Refer a business. Earn $10,000 per completed data licence, with the fee confirmed in writing before the introduction.">
 <meta name="twitter:image:alt" content="Refer a business. Earn $10,000 per completed data licence, with the fee confirmed in writing before the introduction.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<link rel="stylesheet" href="/analytics.css?v=1">
+<script defer src="/analytics-config.js?v=1"></script>
+<script defer src="/analytics.js?v=1"></script>
 </head>
 <body class="refer-page">
 
@@ -282,7 +385,7 @@
 
 <footer><div class="wrap">
   <div class="footer-identity"><a href="/" aria-label="Sell My Company Data home"><img src="/assets/brand/stacked-paper.svg" alt="Sell My Company Data" width="242" height="80"></a><p>Business data licensing for AI.</p></div>
-  <div class="footer-details"><nav aria-label="Legal"><a href="/privacy/">Privacy</a> · <a href="/terms/">Website &amp; referral terms</a></nav>
+  <div class="footer-details"><nav aria-label="Resources"><a href="/data-licensing/">Data licensing</a> · <a href="/data-valuation/">How estimates work</a></nav><nav aria-label="Legal"><a href="/privacy/">Privacy</a> · <a href="/terms/">Website &amp; referral terms</a></nav>
   <div>&copy; 2026 Sell My Company Data. All rights reserved.</div>
   <div><a href="https://cal.com/jamesrowdyy/15min" target="_blank" rel="noopener">Speak with James ↗</a></div>
 </div></div></footer>

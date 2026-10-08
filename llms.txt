@@ -1,29 +1,22 @@
-# SellMyCompanyData
+# Sell My Company Data
 
-> We license de-identified business workflow data from companies to AI labs. Get a free ballpark valuation of your company's data in 60 seconds.
+> Sell My Company Data helps companies explore licensing de-identified operational records to AI labs and research teams. Companies retain ownership; scope, permitted use and payment are agreed in writing.
 
-## Pages
-- [Home](https://sellmycompanydata.com/): free valuation of your company's operational data in 60 seconds, then a call
-- [For buyers](https://sellmycompanydata.com/buyers/): license de-identified business data from real companies. Send a data brief
-- [Refer a business](https://sellmycompanydata.com/refer/): introduce a company with valuable operating data and earn a referral fee on every completed licence
+The free calculator is an indicative model, not a buyer offer. It uses employees, annual revenue and business age. Industry and selected systems do not change its result. Final pricing depends on records, volume, quality, permissions and buyer review.
 
-## Key facts
-- We license de-identified business workflow data to AI labs and research teams training frontier models
-- Data types: CRM pipelines, support tickets, contracts, invoices, project boards, SOPs, internal docs
-- Customer details are removed before anything leaves processing; original datasets are deleted afterwards
-- It is a licence, not a sale: companies keep ownership of their data
-- Payment lands within 7 days of the data passing review
-- The data is real work from real companies, never synthetic or model-generated filler
+## Sellers
+- [Home and calculator](https://sellmycompanydata.com/): estimate a potential licence range and request a conversation.
+- [How business data licensing works](https://sellmycompanydata.com/data-licensing/): records, eligibility, ownership, rights and the licensing process.
+- [Calculator methodology](https://sellmycompanydata.com/data-valuation/): the formula, assumptions, examples and limits.
 
-## Pricing
-- The valuation is free
-- Payout to companies ranges from roughly $30K to $3M+ depending on team size, history, sector and data sources
-- Referral fees are typically 5-10% of the licence value, agreed in writing before the introduction
+## Buyers and referrals
+- [Buy business data](https://sellmycompanydata.com/buyers/): submit a data brief for AI research.
+- [Refer a business](https://sellmycompanydata.com/refer/): advertised flat $10,000 fee per qualifying completed licence, subject to written referral terms agreed before an introduction proceeds.
 
-## FAQ
-- Who buys the data? AI labs and research teams training frontier models. Data is never resold to competitors or published.
-- Will customer information be exposed? No. Personal and customer-identifying information is removed to a documented standard before anything ships.
-- How fast do companies get paid? Within 7 days of their data passing review. Most companies go from first call to payment in two to three weeks.
-- What kind of data qualifies? Operational records from the tools teams use daily: CRM pipelines, support tickets, contracts, invoices, project boards, SOPs and internal docs.
-- What rights do buyers get? A defined licence, not a transfer of ownership. Scope, permitted use, model types and duration are agreed in writing.
-- How fast does a buyer get a reply? Within one business day of a brief. Samples are redacted and covered by an NDA.
+## Policies and contact
+- [Privacy notice](https://sellmycompanydata.com/privacy/): enquiry and booking information handling.
+- [Website and referral terms](https://sellmycompanydata.com/terms/): estimates, enquiries and referral eligibility.
+- [Speak with James](https://cal.com/jamesrowdyy/15min): personal 15-minute booking page used by this business.
+
+## Reference
+- [Detailed facts](https://sellmycompanydata.com/llms-full.txt): a plain-text explanation of the service and calculator.
