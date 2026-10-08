@@ -307,7 +307,7 @@
   <div class="wrap narrow">
     <div class="sec-head">
       <h2>Book a valuation call</h2>
-      <p>Share your details, then choose a time for a free 5-minute call with James.</p>
+      <p>Share your details, then choose a time for a free 15-minute call with James.</p>
     </div>
     <div class="panel">
       <form id="lead-form">
@@ -329,9 +329,9 @@
       <div id="booking" hidden>
         <h3>Choose a time with James</h3>
         <p>Your details are saved. Select a time below to confirm your free call.</p>
-        <iframe id="booking-calendar" title="Book a free 5-minute call with James" style="width:100%;height:720px;border:0;border-radius:16px" loading="lazy"></iframe>
+        <iframe id="booking-calendar" title="Book a free 15-minute call with James" style="width:100%;height:720px;border:0;border-radius:16px" loading="lazy"></iframe>
       </div>
-      <p class="fine"><a id="booking-link" href="https://cal.com/jamesrowdy/5min" target="_blank" rel="noopener">Open the booking calendar directly ↗</a></p>
+      <p class="fine"><a id="booking-link" href="https://cal.com/jamesrowdyy/15min" target="_blank" rel="noopener">Open the booking calendar directly ↗</a></p>
     </div>
   </div>
 </section>
@@ -435,7 +435,7 @@ calc();
       if (res.ok && res.d.ok) {
         msg.className = 'form-msg ok';
         msg.textContent = "Your details are saved. Choose a time below to confirm your call.";
-        var bookingUrl = new URL('https://cal.com/jamesrowdy/5min');
+        var bookingUrl = new URL('https://cal.com/jamesrowdyy/15min');
         bookingUrl.searchParams.set('name', (payload.firstName+' '+payload.lastName).trim());
         bookingUrl.searchParams.set('email', payload.email);
         var bookingLink = document.getElementById('booking-link');
