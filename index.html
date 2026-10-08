@@ -154,6 +154,7 @@
 <link rel="stylesheet" href="/analytics.css?v=1">
 <script defer src="/analytics-config.js?v=1"></script>
 <script defer src="/analytics.js?v=1"></script>
+<link rel="stylesheet" href="/mobile.css?v=1">
 </head>
 <body class="seller-page">
 
@@ -167,12 +168,13 @@
     <a href="/refer/">Refer for $10K</a>
     <a class="btn btn-primary" href="#value">Get a data valuation</a>
   </nav>
-</div><div class="mobile-routes"><a href="/">Sell data</a><a href="/buyers/">Buy data</a><a href="/refer/">Refer for $10K</a></div></header>
+</div></header>
+<nav class="mobile-routes" aria-label="Main destinations"><a href="/"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16v13H4zM8 7V4h8v3M4 12h16M10 12v3h4v-3"/></svg><span>Sell data</span></a><a href="/buyers/"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="m15 15 5 5"/></svg><span>Buy data</span></a><a href="/refer/"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12v8H4v-8M3 8h18v4H3zM12 8v12"/><path d="M12 8H8a3 3 0 1 1 3-3l1 3Zm0 0h4a3 3 0 1 0-3-3l-1 3Z"/></svg><span>Refer for $10K</span></a></nav>
 
 <div class="appbar" id="appbar">
   <div class="appbar-inner">
     <div class="est">
-      <div class="k">Estimated payout</div>
+      <div class="k" id="appbar-label">Example estimate</div>
       <div class="v" id="appbar-v">$29K &ndash; $41.5K</div>
     </div>
     <a class="btn btn-primary" id="appbar-btn" href="#apply">Book a call</a>
@@ -229,6 +231,13 @@
       <p>Enter your employee count, annual revenue and year founded for an instant estimate. Industry and systems help us prepare for your call.</p>
     </div>
     <div class="calc">
+      <div class="result">
+        <div class="k" id="estimate-label">Example estimate</div>
+        <div class="val" id="range" role="status" aria-live="polite" aria-atomic="true">$29K &ndash; $41.5K</div>
+        <div class="bar"><i id="bar"></i></div>
+        <div class="note">An indicative range, not a buyer offer. <span id="estimate-hint">Complete all three business questions for your estimate. </span>Final pricing depends on the records, volume, quality, permissions and buyer review. <a href="/data-valuation/">How we calculate this</a>.</div>
+        <a class="btn btn-primary btn-block" href="#apply">Book a valuation call</a>
+      </div>
       <div class="panel">
         <div class="field">
           <label for="emp">Full-time employees</label>
@@ -285,13 +294,7 @@
         </div>
       </div>
 
-      <div class="result">
-        <div class="k" id="estimate-label">Example estimate</div>
-        <div class="val" id="range" role="status" aria-live="polite" aria-atomic="true">$29K &ndash; $41.5K</div>
-        <div class="bar"><i id="bar"></i></div>
-        <div class="note">An indicative range, not a buyer offer. <span id="estimate-hint">Complete all three business questions for your estimate. </span>Final pricing depends on the records, volume, quality, permissions and buyer review. <a href="/data-valuation/">How we calculate this</a>.</div>
-        <a class="btn btn-primary btn-block" href="#apply">Book a valuation call</a>
-      </div>
+
     </div>
   </div>
 </section>
@@ -451,6 +454,7 @@ function calc(){
   var complete = Number(document.getElementById('emp').value) >= 1 && document.getElementById('rev').value && document.getElementById('yr').value;
   document.getElementById('estimate-label').textContent = complete ? 'Your indicative estimate' : 'Example estimate';
   document.getElementById('estimate-hint').hidden = Boolean(complete);
+  document.getElementById('appbar-label').textContent = complete ? 'Your indicative estimate' : 'Example estimate';
   var range = DataValuation.format(result.low)+' – '+DataValuation.format(result.high);
   document.getElementById('range').textContent = range;
   document.getElementById('estimate-range').value = range;
@@ -479,13 +483,16 @@ calc();
     var result = document.querySelector('#value .result').getBoundingClientRect();
     var value = document.getElementById('value').getBoundingClientRect();
     var inResult = result.top < window.innerHeight && result.bottom > 0;
-    var visible = value.top < 0 && !inApply && !inResult;
+    var editing = /^(INPUT|SELECT|TEXTAREA)$/.test(document.activeElement.tagName);
+    var visible = window.matchMedia('(max-width:900px)').matches && value.top < 0 && !inApply && !inResult && !editing;
     bar.classList.toggle('show', visible);
     bar.inert = !visible;
   }
   function onScroll(){ if (!ticking) { ticking = true; window.requestAnimationFrame(sync); } }
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll);
+  document.addEventListener('focusin', onScroll);
+  document.addEventListener('focusout', onScroll);
   window.addEventListener('load', sync);
   sync();
 })();

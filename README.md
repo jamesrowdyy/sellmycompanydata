@@ -54,3 +54,15 @@ Verification: `python tests/discovery_analytics.py` checks metadata, structured
 FAQ parity, links, sitemap, all seven page layouts, consent and event privacy.
 After a production deploy, `python scripts/submit_indexnow.py` notifies IndexNow
 of the published sitemap URLs; it does not guarantee indexing.
+
+## Mobile app layout
+
+`mobile.css` is the final shared stylesheet on all seven pages. At 900px and
+below it provides a compact header, safe-area-aware bottom navigation, and
+touch controls. The seller calculator and estimate come before the sources
+band; the estimate precedes its fields and becomes a compact top summary
+when scrolled away. Navigation and the summary yield while form fields have
+focus. Desktop retains its existing two-column calculator.
+
+With the site running locally on port 8000, run `python tests/mobile_layout.py`
+(or set `SITE_TEST_URL`) to check the app shell at five viewport widths.

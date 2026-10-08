@@ -41,6 +41,9 @@ try:
         assert page.evaluate('document.documentElement.scrollWidth <= innerWidth'), (width,path,'overflow')
         assert not page.locator('a[href^="mailto:"]').count(), (path,'email not removed')
         assert not page.locator('body').inner_text().find('hello@sellmycompanydata.com') >= 0
+        # Hidden mobile diagrams are intentionally lazy; load before checking assets.
+        page.locator('img[loading=lazy]').evaluate_all('(imgs)=>imgs.forEach(i=>i.loading="eager")')
+        page.wait_for_function('Array.from(document.images).every(i=>i.complete)')
         broken = page.locator('img').evaluate_all('(imgs)=>imgs.filter(i=>!i.complete||i.naturalWidth===0).map(i=>i.src)')
         assert not broken, broken
         results['layouts'].append({'width':width,'path':path,'overflow':False})
