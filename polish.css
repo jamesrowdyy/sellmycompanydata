@@ -13,7 +13,8 @@
 .path-card .btn{margin-top:auto;gap:24px}
 .path-card .path-note{font-size:12px;color:var(--muted);margin-top:16px}
 .path-graphic{display:flex;flex-wrap:wrap;align-content:center;gap:8px;min-height:150px}
-.path-graphic span{border:1px solid #d6e5dd;border-radius:12px;padding:12px 16px;background:var(--soft-green);color:var(--deep-green);font-size:13px;transform:rotate(-4deg)}
+.path-graphic span{display:inline-flex;align-items:center;gap:8px;border:1px solid #d6e5dd;border-radius:12px;padding:12px 16px;background:var(--soft-green);color:var(--deep-green);font-size:13px;transform:rotate(-4deg)}
+.path-graphic svg{flex:none}
 .path-graphic span:nth-child(2){transform:rotate(3deg) translateY(-10px)}
 .referral-path{background:var(--soft-green);border-color:#dce8e0}
 .referral-amount{font-size:68px;letter-spacing:-.065em;font-weight:600;line-height:1.1;min-height:150px;display:flex;flex-direction:column;justify-content:center}
