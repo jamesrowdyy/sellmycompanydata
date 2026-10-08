@@ -1,0 +1,28 @@
+/* Flow fixes using the Exchange brand tokens. */
+#sys .system-choice{position:relative;padding-right:28px;gap:8px}
+.system-choice>span:last-child{overflow-wrap:normal;word-break:normal}
+#sys .brand-mark{flex-basis:24px;width:24px;height:24px}
+#sys .system-choice.on::after{position:absolute;right:9px;top:8px;margin:0;font-size:12px}
+#sys .system-choice{padding-left:9px}
+@media(max-width:480px){#sys{grid-template-columns:1fr}.system-choice>span:last-child{white-space:normal}}
+@media(min-width:481px) and (max-width:900px){#sys{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.qualification{margin-top:22px;border-top:1px solid var(--line);padding-top:14px}
+.qualification summary{cursor:pointer;min-height:44px;font-weight:500}
+.qualification .field{margin-top:16px;margin-bottom:0}
+.qualification .hint{color:var(--muted);font-size:14px;font-weight:400}
+textarea{font:inherit;width:100%;padding:12px;resize:vertical}
+.field-note,.section-note{font-size:14px;color:var(--muted);line-height:1.6}
+.section-note{margin:24px 0 0;max-width:70ch}
+.explanation-grid .card{padding:28px}
+.explanation-grid .private-record{background:var(--soft-green)}
+.explanation-grid p{margin:0}
+.industry-toggle{margin:20px 0 0}
+.industry-toggle[hidden]{display:none}
+@media(min-width:901px){.industry-toggle{display:none}}
+@media(max-width:900px){.business-grid.is-collapsed .business-card:nth-child(n+5){display:none}.buyer-page .hero .trust{display:none}.buyer-page .exchange-hero.hero{padding-bottom:20px}.buyer-page #brief{padding-top:20px}.explanation-grid .card{padding:24px}}
+.legal-content{max-width:780px;padding-top:56px;padding-bottom:64px}
+.legal-content h1{font-size:clamp(32px,5vw,48px);line-height:1.12;letter-spacing:-.035em;margin-bottom:24px}
+.legal-content h2{font-size:24px;margin:32px 0 12px}
+.legal-content p,.legal-content li{font-size:16px;line-height:1.7}
+.fine a,.legal-content a,.section-note a{text-decoration:underline;text-underline-offset:3px}
+footer .footer-details nav{display:block;color:inherit}
