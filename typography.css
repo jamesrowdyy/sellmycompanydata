@@ -1,0 +1,26 @@
+/* Shared type scale across all pages. Use sentence case in source copy. */
+:root{--type-hero:56px;--type-section:36px;--type-feature:28px;--type-card:18px;--type-body:16px;--type-small:14px;--type-lead:18px}
+body{font-size:var(--type-body);line-height:1.6}
+button,input,select,textarea{font-family:inherit}
+.hero h1,.hero.hero-left h1{font-size:var(--type-hero);line-height:1.12;font-weight:600;letter-spacing:-.035em}
+h2,.sec-head h2,.form-aside h2{font-size:var(--type-section);line-height:1.2;font-weight:600;letter-spacing:-.025em}
+.card h3,.supply-item h3,.trustgrid h3,.business-card h3,.aside-benefit h3{font-size:var(--type-card);line-height:1.4;font-weight:600;letter-spacing:-.015em}
+.path-card h3{font-size:var(--type-feature);line-height:1.25;font-weight:600;letter-spacing:-.025em}
+.hero p,.hero.hero-left p{font-size:var(--type-lead);line-height:1.6}
+.sec-head p,#value .sec-head p,#how .sec-head p,#what .sec-head p,.card p,.trustgrid p,.faq p,.business-card p,.path-card p,.aside-benefit p,.form-aside>p,.referral-aside ol,.business-fit-footer p{font-size:var(--type-body);line-height:1.6}
+.supply-item p{font-size:var(--type-body)!important;line-height:1.6}
+label,.faq summary{font-size:var(--type-body);line-height:1.5;font-weight:500}
+input,select,textarea{font-size:var(--type-body);line-height:1.5}
+.eyebrow,.small-label,.card .num,.result .k,.appbar .est .k{font-size:var(--type-small);line-height:1.5;letter-spacing:0;text-transform:none;font-weight:500}
+label .hint,.fine,.result .note,.logowall-note,.path-card .path-note,.business-fit-footer p span,.pay .lbl,.referral-amount span,.form-msg{font-size:var(--type-small);line-height:1.5;letter-spacing:0;text-transform:none}
+.hero .trust,.logoband-label,footer{font-size:var(--type-small);line-height:1.5}
+.btn,.btn-lg,.hero .actions .btn,.chip,#sys .system-choice,.seg button,.sectors span,.tags span,.path-graphic span{font-size:var(--type-small);line-height:1.5;font-weight:500;letter-spacing:0;text-transform:none}
+header nav a,.mobile-routes a{font-size:var(--type-small);line-height:1.5}
+.brand{font-size:16px;line-height:1.5}
+@media(max-width:900px){
+ :root{--type-hero:36px;--type-section:28px;--type-feature:24px;--type-lead:16px}
+ .hero h1,.hero.hero-left h1{font-size:var(--type-hero)}
+ header nav a:not(.btn){font-size:var(--type-body)}
+ .brand{font-size:15px}
+}
+@media(max-width:359px){:root{--type-hero:32px}.mobile-routes a{padding-left:4px;padding-right:4px}}
