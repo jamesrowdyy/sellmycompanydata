@@ -18,8 +18,13 @@ header nav a.btn{color:var(--bg)}
 .hero .btn-primary,.path-card .btn{box-shadow:none}
 .btn:disabled{cursor:wait;opacity:.65}
 :focus-visible{outline:2px solid var(--deep-green);outline-offset:4px}
-.exchange-hero.hero,.exchange-hero.hero.hero-left{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:64px;align-items:center;text-align:left;padding:72px 24px}
-.hero-copy{min-width:0}
+.exchange-hero.hero,.exchange-hero.hero.hero-left{display:block;text-align:left;padding:72px 24px}
+.hero-copy{min-width:0;max-width:880px}
+.seller-page .hero{text-align:center}
+.seller-page .hero-copy{max-width:960px;margin:0 auto}
+.seller-page .hero p{margin-left:auto;margin-right:auto}
+.seller-page .hero .actions{justify-content:center}
+.seller-page .hero .trust{flex-direction:row;justify-content:center;gap:12px 24px}
 .hero h1,.hero.hero-left h1{font-size:var(--type-hero);font-weight:500;line-height:1.04;letter-spacing:-.048em;text-wrap:initial;margin:0 0 28px;max-width:none}
 .hero h1 em{color:var(--muted)}
 .hero p,.hero.hero-left p{font-size:var(--type-lead);line-height:1.55;margin:0 0 32px;max-width:600px}
@@ -27,9 +32,6 @@ header nav a.btn{color:var(--bg)}
 .hero .trust{justify-content:flex-start;flex-direction:column;gap:9px;margin-top:27px;font-size:13px;line-height:1.5;color:var(--muted)}
 .hero .eyebrow{padding:0;border:0;background:transparent;border-radius:0;font-size:12px;line-height:1.5;letter-spacing:.035em;margin-bottom:24px;color:var(--muted)}
 .hero .eyebrow i{display:none}
-.exchange-panel{align-self:stretch;min-height:430px;padding:38px;background:var(--deep-green);color:var(--bg);border-radius:16px;display:flex;flex-direction:column;justify-content:space-between;gap:28px}
-.exchange-panel img{display:block;width:100%;max-width:300px;height:auto;margin:auto;aspect-ratio:1}
-.hero .exchange-panel p{color:var(--bg);font-size:30px;line-height:1.05;letter-spacing:-.035em;font-weight:500;margin:0}
 section{padding:80px 0;border-color:var(--line2)}
 h2,.sec-head h2,.form-aside h2{font-weight:500;letter-spacing:-.035em;line-height:1.12}
 .sec-head p{line-height:1.6}
@@ -83,7 +85,7 @@ footer .wrap{align-items:flex-end}
 footer a:focus-visible{outline-color:var(--bg)}
 @media(hover:hover){.btn:hover,.path-card:hover,.logotile:hover img{transform:none;box-shadow:none}.btn-ghost:hover{background:var(--surface)}}
 @media(min-width:901px){.buyer-page .hero h1,.refer-page .hero h1{font-size:56px}.buyer-page .hero .trust,.refer-page .hero .trust{font-size:13px}}
-@media(max-width:1100px) and (min-width:901px){:root{--type-hero:56px}header nav{gap:18px}.brand img{width:224px}.exchange-hero.hero,.exchange-hero.hero.hero-left{gap:36px}.exchange-panel{padding:28px}}
+@media(max-width:1100px) and (min-width:901px){:root{--type-hero:56px}header nav{gap:18px}.brand img{width:224px}}
 @media(max-width:900px){
  :root{--type-hero:44px;--type-section:32px;--type-feature:26px;--type-lead:17px}
  header .wrap{height:70px}.brand img{width:220px}.menu-toggle{background:transparent;border-color:var(--line)}
@@ -92,11 +94,10 @@ footer a:focus-visible{outline-color:var(--bg)}
  .mobile-routes{padding-bottom:8px}.mobile-routes a{border-radius:8px;min-height:36px}
  .mobile-routes a[aria-current=page]{background:var(--soft-green);color:var(--ink)}
  html{scroll-padding-top:134px}
- .exchange-hero.hero,.exchange-hero.hero.hero-left{grid-template-columns:1fr;gap:32px;padding:40px 20px}
+ .seller-page .hero{text-align:left}.seller-page .hero .actions{justify-content:flex-start}.seller-page .hero .trust{flex-direction:column;align-items:flex-start;gap:9px}.seller-page .hero p{margin-left:0}
+ .exchange-hero.hero,.exchange-hero.hero.hero-left{padding:40px 20px}
  .hero h1,.hero.hero-left h1{line-height:1.04;margin-bottom:24px;max-width:690px;letter-spacing:-.045em}
  .hero p,.hero.hero-left p{margin-bottom:26px;max-width:600px}.hero .trust{margin-top:24px;font-size:13px}
- .exchange-panel{min-height:0;padding:24px;flex-direction:row;align-items:center;justify-content:space-between;gap:20px}
- .exchange-panel img{width:120px;height:120px;margin:0}.hero .exchange-panel p{font-size:32px;margin:0}
  section{padding:52px 0}.logoband{padding:28px 0}.business-grid{padding:16px;gap:12px}
  .business-card{padding:22px}.panel,.result,.card,.supply-item,.path-card,.form-layout{border-radius:16px}
  .panel,.result{padding:24px}.trustgrid>div{border-radius:16px;background:#fff;border-color:var(--line2)}
@@ -104,5 +105,5 @@ footer a:focus-visible{outline-color:var(--bg)}
  .hero .actions .btn{min-height:48px;padding:13px 19px}.path-card{padding:28px}
  footer .wrap{align-items:flex-start;gap:28px}.footer-details{align-items:flex-start;gap:10px}
 }
-@media(max-width:359px){:root{--type-hero:39px}.brand img{width:205px}.exchange-hero.hero,.exchange-hero.hero.hero-left{padding-left:16px;padding-right:16px}.exchange-panel{padding:20px}.exchange-panel img{width:94px;height:94px}.hero .exchange-panel p{font-size:28px}.panel,.result{padding:20px}.result .val{font-size:30px}}
+@media(max-width:359px){:root{--type-hero:39px}.brand img{width:205px}.exchange-hero.hero,.exchange-hero.hero.hero-left{padding-left:16px;padding-right:16px}.panel,.result{padding:20px}.result .val{font-size:30px}}
 @media(prefers-reduced-motion:no-preference){.revealed{animation-duration:180ms}}
