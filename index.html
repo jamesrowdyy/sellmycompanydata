@@ -404,7 +404,7 @@
         <p>Your details are saved. Select a time below to confirm your free call.</p>
         <iframe id="booking-calendar" title="Book a free 15-minute call with James" style="width:100%;height:720px;border:0;border-radius:16px" loading="lazy"></iframe>
       </div>
-      <p class="fine"><a id="booking-link" href="https://cal.com/jamesrowdyy/15min" target="_blank" rel="noopener">Open the booking calendar directly ↗</a></p>
+      <p class="fine"><a id="booking-link" href="https://cal.com/jamesrowdyy/15min?notes=Sell%20My%20Company%20Data%20valuation%20call" target="_blank" rel="noopener">Open the booking calendar directly ↗</a></p>
     </div>
   </div>
 </section>
@@ -532,6 +532,11 @@ calc();
         var bookingUrl = new URL('https://cal.com/jamesrowdyy/15min');
         bookingUrl.searchParams.set('name', (payload.firstName+' '+payload.lastName).trim());
         bookingUrl.searchParams.set('email', payload.email);
+        bookingUrl.searchParams.set('notes', [
+          'Sell My Company Data valuation call',
+          'Company: ' + payload.company,
+          payload.website ? 'Website: ' + payload.website : ''
+        ].filter(Boolean).join('\n'));
         var bookingLink = document.getElementById('booking-link');
         bookingLink.href = bookingUrl.toString();
         bookingUrl.searchParams.set('embed', 'true');

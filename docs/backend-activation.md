@@ -41,7 +41,8 @@ static repository. Include the lead type and a safe internal reference. Avoid
 posting arbitrary confidential free text into notifications.
 
 Email notifications are **not configured**. Do not advertise a business inbox or
-promise email delivery. The public footer uses the personal booking calendar.
+promise email delivery. Public footer contact links have been removed; the
+seller booking flow uses the personal booking calendar.
 
 After access is restored, submit one clearly identified authorised test enquiry,
 verify the stored fields and the dedicated Slack delivery, and verify that the

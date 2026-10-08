@@ -6,7 +6,12 @@ The website integration is prepared, but GA4 and PostHog identifiers are empty.
 No GA4 script or PostHog request is emitted until valid public identifiers are
 configured AND a visitor opts in. Existing Cloudflare Web Analytics is separate.
 Search Console ownership and sitemap submission are not completed by a website
-deployment. The PostHog and GSC Wizard connections were suggested, not confirmed.
+deployment. PostHog and GSC Wizard authentication were confirmed on 9 October
+2026. PostHog cannot create a dedicated project until the organization enables
+additional project capacity. GSC Wizard has Search Console authorization, but
+its Google Analytics connection still requires Analytics consent. The only
+verified Search Console property currently available is jamesrowdy.com, which
+does not verify ownership of sellmycompanydata.com.
 
 Keep this business in its own PostHog project and GA4 property; do not reuse a
 TwinTone identifier. The business timezone must be confirmed at account creation;
