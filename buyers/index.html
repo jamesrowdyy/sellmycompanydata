@@ -30,19 +30,127 @@
 {
   "@context": "https://schema.org",
   "@graph": [
-    {"@type": "Organization", "name": "Sell My Company Data", "url": "https://sellmycompanydata.com/",
-     "description": "We help companies license their operating data to AI labs."},
-    {"@type": "Service", "name": "Business Data Licensing",
-     "provider": {"@type": "Organization", "name": "Sell My Company Data", "url": "https://sellmycompanydata.com/"},
-     "description": "Licensing of de-identified operational records from real companies: CRM pipelines, support tickets, contracts, invoices, project boards, SOPs and internal documents. Rights-cleared and delivered under a scoped written licence.",
-     "areaServed": "Worldwide", "audience": {"@type": "Audience", "audienceType": "AI labs, model developers and research teams"}},
-    {"@type": "FAQPage", "mainEntity": [
-      {"@type": "Question", "name": "Is the data synthetic?", "acceptedAnswer": {"@type": "Answer", "text": "No. Every record comes from a real company doing real work. We do not sell synthetic or model-generated filler."}},
-      {"@type": "Question", "name": "How is the data de-identified?", "acceptedAnswer": {"@type": "Answer", "text": "Names, contact details, credentials, payment details and other identifying fields are removed or replaced to a documented standard before delivery. The operational sequence stays intact."}},
-      {"@type": "Question", "name": "What rights do buyers get?", "acceptedAnswer": {"@type": "Answer", "text": "A defined licence, not a transfer of ownership. Scope, permitted use, model types and duration are set out in writing and approved by the supplying company before anything ships."}},
-      {"@type": "Question", "name": "Do you provide samples?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. We provide a redacted sample and a supply plan before any licence is agreed, so you can judge quality first."}},
-      {"@type": "Question", "name": "How fast can supply be delivered?", "acceptedAnswer": {"@type": "Answer", "text": "We reply to a brief within one business day. Typical delivery runs two to three weeks from an agreed scope, depending on sector and volume."}}
-    ]}
+    {
+      "@type": "Organization",
+      "@id": "https://sellmycompanydata.com/#organization",
+      "name": "Sell My Company Data",
+      "url": "https://sellmycompanydata.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://sellmycompanydata.com/assets/brand/horizontal-ink.svg"
+      },
+      "description": "Business data licensing and indicative valuation for companies, AI labs and research teams."
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://sellmycompanydata.com/#website",
+      "name": "Sell My Company Data",
+      "url": "https://sellmycompanydata.com/",
+      "publisher": {
+        "@id": "https://sellmycompanydata.com/#organization"
+      },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://sellmycompanydata.com/buyers/#webpage",
+      "url": "https://sellmycompanydata.com/buyers/",
+      "name": "Business Workflow Data for AI Training | Sell My Company Data",
+      "description": "Source real business workflow data for AI training. Request data by sector, modality and intended use, with a sample before you commit.",
+      "isPartOf": {
+        "@id": "https://sellmycompanydata.com/#website"
+      },
+      "about": {
+        "@id": "https://sellmycompanydata.com/#organization"
+      },
+      "inLanguage": "en",
+      "breadcrumb": {
+        "@id": "https://sellmycompanydata.com/buyers/#breadcrumb"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://sellmycompanydata.com/buyers/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://sellmycompanydata.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "AI training data from real businesses.",
+          "item": "https://sellmycompanydata.com/buyers/"
+        }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://sellmycompanydata.com/buyers/#service",
+      "name": "Business data licensing for AI research",
+      "url": "https://sellmycompanydata.com/buyers/",
+      "provider": {
+        "@id": "https://sellmycompanydata.com/#organization"
+      },
+      "description": "Source de-identified messages, documents and operational workflows for AI research. Send a brief to discuss data scope, rights, samples and delivery.",
+      "serviceType": "Business data licensing"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://sellmycompanydata.com/buyers/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is the data synthetic?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Every record comes from a real company doing real work. We do not sell synthetic or model-generated filler."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is it de-identified?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Names, contact details, credentials, payment details and other identifying fields are removed or replaced to a documented standard before delivery. The operational sequence stays intact, which is the part that carries the value."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What rights do we get?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A defined licence, not a transfer of ownership. Scope, permitted use, model types and duration are set out in writing and approved by the supplying company before anything ships. Non-exclusive by default."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you provide samples?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. A redacted sample and a supply plan come before any licence is agreed, covered by an NDA, so you can judge quality first."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How fast can you deliver?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We reply to a brief within one business day. Typical delivery runs two to three weeks from an agreed scope, depending on sector and volume."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you work with data we can't scrape ourselves?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "That's the point. This is the material that is not on the open web: internal decisions, exception handling and the record of how a task actually got finished."
+          }
+        }
+      ]
+    }
   ]
 }
 </script>
@@ -77,6 +185,10 @@
 <script defer src="/site-events.js?v=1"></script>
 <meta property="og:image:alt" content="AI training data from real businesses. License the decisions, workflows and outcomes behind everyday work.">
 <meta name="twitter:image:alt" content="AI training data from real businesses. License the decisions, workflows and outcomes behind everyday work.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<link rel="stylesheet" href="/analytics.css?v=1">
+<script defer src="/analytics-config.js?v=1"></script>
+<script defer src="/analytics.js?v=1"></script>
 </head>
 <body class="buyer-page">
 
@@ -225,7 +337,7 @@
 
 <footer><div class="wrap">
   <div class="footer-identity"><a href="/" aria-label="Sell My Company Data home"><img src="/assets/brand/stacked-paper.svg" alt="Sell My Company Data" width="242" height="80"></a><p>Business data licensing for AI.</p></div>
-  <div class="footer-details"><nav aria-label="Legal"><a href="/privacy/">Privacy</a> · <a href="/terms/">Website &amp; referral terms</a></nav>
+  <div class="footer-details"><nav aria-label="Resources"><a href="/data-licensing/">Data licensing</a> · <a href="/data-valuation/">How estimates work</a></nav><nav aria-label="Legal"><a href="/privacy/">Privacy</a> · <a href="/terms/">Website &amp; referral terms</a></nav>
   <div>&copy; 2026 Sell My Company Data. All rights reserved.</div>
   <div><a href="https://cal.com/jamesrowdyy/15min" target="_blank" rel="noopener">Speak with James ↗</a></div>
 </div></div></footer>
