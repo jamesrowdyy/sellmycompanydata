@@ -12,8 +12,12 @@ Static site. Single `index.html`. No build step, no dependencies.
 The seller, buyer and referral pages use the approved Exchange identity.
 `brand.css` applies the shared colors, typography and responsive
 brand treatment. Production logo masters live in `assets/brand/`; Inter is
-self-hosted in `assets/fonts/` with its OFL licence. `og-exchange.png` is the
-current social preview. Keep the existing conversion scripts independent of
+self-hosted in `assets/fonts/` with its OFL licence. The seller, buyer and referral pages each use an approved
+`assets/brand/*-link-preview.png` social preview. The licensing-process and
+buyer-workflow SVGs reuse the content regions of the approved brand artwork;
+mobile renders readable text equivalents. The core tagline is “Your company
+data. Licensed for AI.” and the footer descriptor is “Business data licensing
+for AI.”. Keep the existing conversion scripts independent of
 branding changes.
 
 Run the calculator regression check with `node tests/valuation.test.cjs`.

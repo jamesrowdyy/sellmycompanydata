@@ -107,3 +107,22 @@ footer a:focus-visible{outline-color:var(--bg)}
 }
 @media(max-width:359px){:root{--type-hero:39px}.brand img{width:205px}.exchange-hero.hero,.exchange-hero.hero.hero-left{padding-left:16px;padding-right:16px}.panel,.result{padding:20px}.result .val{font-size:30px}}
 @media(prefers-reduced-motion:no-preference){.revealed{animation-duration:180ms}}
+
+/* Approved business-data licensing message system. */
+.seller-page .hero p{max-width:710px}
+.brand-diagram{display:block;width:100%;height:auto}
+.brand-process-mobile{display:none}
+.workflow-explainer{margin-top:64px;padding-top:56px;border-top:1px solid var(--line)}
+.workflow-explainer .section-note,#how>.wrap>.section-note{margin-left:auto;margin-right:auto;text-align:center}
+@media(max-width:900px){
+ .brand-diagram{display:none}
+ .brand-process-mobile{display:grid;gap:14px;list-style:none;padding:0;margin:0}
+ .brand-process-mobile li{padding:24px;background:var(--soft-green);border-radius:16px}
+ .brand-process-mobile h3{font-size:24px;font-weight:500;margin:14px 0 12px;letter-spacing:-.025em}
+ .brand-process-mobile p{margin:0;color:var(--muted);line-height:1.6}
+ #how .brand-process-mobile li:last-child{background:var(--deep-green);color:var(--bg)}
+ #how .brand-process-mobile li:last-child p{color:var(--bg)}
+ #how .brand-process-mobile li:last-child .step-number{background:transparent;color:var(--soft-green)}
+ .workflow-explainer{margin-top:40px;padding-top:36px}
+ .workflow-explainer .section-note,#how>.wrap>.section-note{text-align:left}
+}
