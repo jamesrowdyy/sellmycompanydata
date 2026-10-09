@@ -52,6 +52,8 @@ try:
  with sync_playwright() as p:
   browser=p.chromium.launch(args=['--no-sandbox'])
   page=browser.new_page(viewport={'width':390,'height':900},reduced_motion='reduce')
+  # Exercise disabled-provider behavior independently of production identifiers.
+  page.route('**/analytics-config.js*',lambda r:r.fulfill(content_type='text/javascript',body='window.SMCD_ANALYTICS_CONFIG={};'))
   page.route('https://static.cloudflareinsights.com/**',lambda r:r.fulfill(status=200,body=''))
   errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
   for width in [320,390,768,1440]:
