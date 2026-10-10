@@ -1,66 +1,102 @@
-/* Payout model anchored to published buyer figures, researched 2026-10-11.
-   No buyer publishes a formula: every credible one says a record is priced deal by
-   deal after a sample. What they DO publish:
-     micro1        tiers of $100K+ / $500K+ / $1M+ by scope, for companies with 30+ staff
-     Handshake AI  $100K-$4M per partnership, 20+ staff and 3+ years
-     Nova          two deals closed at $100K each (3 and 5 business days)
-     Troveo        full-company operational licences "start at six figures"
-   So the floor for a qualifying company is $100K, not the tens of thousands that
-   grepped.ai's model produced. This model starts at that published floor and scales
-   on the factors every buyer names: continuous history (the single biggest driver),
-   systems of record, and team size. Revenue is deliberately minor; buyers say it
-   tells them little. Output is $K. Indicative only. */
+/* Payout model, rebuilt 2026-10-11 on published buyer pricing.
+
+   Most buyers publish ranges, not formulas. Handshake AI is the exception: its
+   data-partnership calculator (joinhandshake.com/ai/data-partnerships) ships its
+   pricing in the page. Read from that page on 2026-10-11:
+
+     base $140,000 + $2,333 per employee + $11,667 per year of operation
+     + $15.75 per GB of records (1 GB per employee-year at the low end, 14 GB at the high end)
+     low = 0.75 x that, high = 1.25 x that, both x a region factor:
+       US 1.00 | Canada 0.75 | Europe (UK included) 0.75 | everywhere else 0.30
+     then both bounds x 1.01 (rounded up), and below 50 staff the low bound loses
+     up to $69,102 x region (the full amount at 20 staff, nothing at 50+).
+     Staff are clamped to 20-200 and years to 3-20.
+
+   That returns $383,083 - $896,969 for a 100-person, 10-year US company, which is
+   exactly what Handshake shows. We reproduce it, with one change: the systems a
+   company selects set the record volume behind the HIGH bound. No systems selected
+   uses Handshake's low-volume assumption (1 GB per employee-year), six or more uses
+   its high-volume one (14 GB), in equal steps. Mercor's own page says the same
+   thing in words: the more tools you share, the higher the payout.
+
+   Cross-checks: micro1 tiers start at $100K for 30+ staff, Polyshares quotes
+   $100K-$2M+, and Handshake's lowest US figure is exactly $100K at 20 staff, 3 years.
+   Revenue and industry do not move the number: no buyer prices on them.
+   Output is whole US dollars. Indicative only, never an offer. */
 (function(root){
   'use strict';
-  var BASE = 100;
-  var MIN_EMPLOYEES = 20;
-  var MIN_YEARS = 3;
+  var P = {
+    baseFee: 140000, perEmployee: 2333, perYear: 11667, perGB: 15.75,
+    lowGB: 1, highGB: 14, lowMinTB: 0.1, highMinTB: 0.2,
+    lowMul: 0.75, highMul: 1.25, uplift: 1.01,
+    smallFrom: 20, smallTo: 50, smallDiscount: 69102
+  };
+  var REGION = { us: 1, ca: 0.75, uk: 0.75, eu: 0.75, anz: 0.3, other: 0.3 };
+  var REGION_LABEL = {
+    us: 'United States', ca: 'Canada', uk: 'United Kingdom', eu: 'Europe',
+    anz: 'Australia or New Zealand', other: 'Another country'
+  };
+  var MIN_EMPLOYEES = 20, MIN_YEARS = 3, MAX_EMPLOYEES = 200, MAX_YEARS = 20;
+  var FULL_SYSTEMS = 6, MORE_BUYERS_FROM = 30;
 
-  // Continuous history, in years. Depth is the biggest single driver.
-  var ageCurve = [[3,1],[5,1.25],[8,1.55],[12,1.9],[20,2.25],[30,2.55],[50,3]];
-  // Team size, standing in for repeatable process.
-  var empCurve = [[20,1],[35,1.15],[60,1.35],[120,1.6],[250,1.9],[600,2.2],[1500,2.5]];
-  // Systems of record: the biggest lever most companies control.
-  var sysCurve = [[0,1],[1,1],[2,1.05],[3,1.15],[5,1.3],[8,1.45],[12,1.55]];
-  // Revenue: minor by design.
-  var revMul = {'pre':0.85,'0-1m':0.95,'1-10m':1,'10-50m':1.08,'50-200m':1.12,'200m+':1.15,'undisclosed':1};
+  function bump(v){ return Math.max(v + 1, Math.ceil(v * P.uplift)); }
 
-  function interp(curve,x){
-    if(x<=curve[0][0]) return curve[0][1];
-    for(var i=1;i<curve.length;i++){
-      if(x<=curve[i][0]){
-        var a=curve[i-1],b=curve[i];
-        return a[1]+(b[1]-a[1])*(x-a[0])/(b[0]-a[0]);
-      }
-    }
-    return curve[curve.length-1][1];
+  // Handshake's published formula; gbHigh is the record volume behind the high bound.
+  function buyerRange(employees, years, region, gbHigh){
+    var ey = employees * years;
+    var lowTB = Math.max(P.lowMinTB, ey * P.lowGB / 1000);
+    var highTB = Math.max(P.highMinTB, ey * gbHigh / 1000);
+    var base = P.baseFee + employees * P.perEmployee + years * P.perYear;
+    var r = REGION[region];
+    var low = Math.round(P.lowMul * (base + lowTB * 1000 * P.perGB) * r);
+    var high = Math.round(P.highMul * (base + highTB * 1000 * P.perGB) * r);
+    var small = Math.max(0, (P.smallTo - employees) / (P.smallTo - P.smallFrom));
+    return { low: Math.round(bump(low) - P.smallDiscount * r * small), high: bump(high) };
   }
 
-  function yearsInBusiness(founded,year){
-    if(founded==='pre-1900') return year-1899;
-    if(!founded) return 0;
-    var n=Number(founded);
-    return isNaN(n)?0:Math.max(0,year-n);
+  function yearsInBusiness(founded, year){
+    if (founded === 'pre-1900') return year - 1899;
+    if (!founded) return 0;
+    var n = Number(founded);
+    return isNaN(n) ? 0 : Math.max(0, year - n);
   }
 
-  function estimate(input,year){
-    year=year||new Date().getFullYear();
-    input=input||{};
-    var emp=parseInt(input.employees,10);
-    if(isNaN(emp)) emp=0;
-    var years=yearsInBusiness(input.founded,year);
-    var complete = emp>0 && Boolean(input.founded);
-    var qualifies = complete && emp>=MIN_EMPLOYEES && years>=MIN_YEARS;
-    if(!qualifies){
-      return {qualifies:false, complete:complete, employees:emp, years:years, low:0, high:0};
-    }
-    var systems=(input.systems&&input.systems.length)||0;
-    var low=BASE*interp(ageCurve,years)*interp(empCurve,emp)*interp(sysCurve,systems)*(revMul[input.revenue||'undisclosed']||1);
-    low=Math.max(BASE,Math.round(low*2)/2);
-    return {qualifies:true, complete:true, employees:emp, years:years, low:low, high:Math.round(low*1.5*2)/2};
+  function regionOf(code){ return Object.prototype.hasOwnProperty.call(REGION, code) ? code : 'us'; }
+
+  function estimate(input, year){
+    year = year || new Date().getFullYear();
+    input = input || {};
+    var emp = parseInt(input.employees, 10);
+    if (isNaN(emp) || emp < 0) emp = 0;
+    var years = yearsInBusiness(input.founded, year);
+    var region = regionOf(input.country);
+    var systems = (input.systems && input.systems.length) || 0;
+    var complete = emp > 0 && Boolean(input.founded);
+    var qualifies = complete && emp >= MIN_EMPLOYEES && years >= MIN_YEARS;
+    var out = { qualifies: qualifies, complete: complete, employees: emp, years: years,
+      region: region, systems: systems, low: 0, high: 0, capped: false, fewerBuyers: false };
+    if (!qualifies) return out;
+    var e = Math.min(emp, MAX_EMPLOYEES), y = Math.min(years, MAX_YEARS);
+    var gbHigh = P.lowGB + (P.highGB - P.lowGB) * Math.min(systems, FULL_SYSTEMS) / FULL_SYSTEMS;
+    var r = buyerRange(e, y, region, gbHigh);
+    out.low = r.low;
+    out.high = r.high;
+    out.capped = emp > MAX_EMPLOYEES || years > MAX_YEARS;
+    out.fewerBuyers = emp < MORE_BUYERS_FROM;
+    return out;
   }
 
-  function format(k){ return k>=1000 ? '$'+(Math.round(k/100)/10)+'M' : '$'+k+'K'; }
+  // Dollars to a short label: $383K, $1.2M.
+  function format(n){
+    if (n >= 999500) return '$' + (Math.round(n / 100000) / 10) + 'M';
+    return '$' + Math.round(n / 1000) + 'K';
+  }
 
-  root.DataValuation={estimate:estimate,format:format,MIN_EMPLOYEES:MIN_EMPLOYEES,MIN_YEARS:MIN_YEARS};
-})(typeof window==='undefined'?globalThis:window);
+  root.DataValuation = {
+    estimate: estimate, format: format, buyerRange: buyerRange,
+    REGION: REGION, REGION_LABEL: REGION_LABEL,
+    MIN_EMPLOYEES: MIN_EMPLOYEES, MIN_YEARS: MIN_YEARS,
+    MAX_EMPLOYEES: MAX_EMPLOYEES, MAX_YEARS: MAX_YEARS,
+    FULL_SYSTEMS: FULL_SYSTEMS, MORE_BUYERS_FROM: MORE_BUYERS_FROM
+  };
+})(typeof window === 'undefined' ? globalThis : window);

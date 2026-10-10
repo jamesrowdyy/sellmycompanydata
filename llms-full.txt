@@ -10,11 +10,10 @@ Sell My Company Data helps companies explore licensing de-identified business wo
 A company can use the free indicative calculator and then submit a booking enquiry. The enquiry asks for contact/company details, the connection to the data and optional context. Calculator answers are included when the enquiry is submitted. Changing calculator inputs alone does not submit a lead or upload business records. Booking proceeds through https://cal.com/jamesrowdyy/15min.
 
 ## Calculator
-Amounts below are in thousands of US dollars. Revenue bases are: pre-revenue 12; $0–1M 20; $1–10M 29; $10–50M 55; $50–200M 95; $200M+ 150; undisclosed 29.
-Employee multipliers: 1 -> 0.8, 10 -> 0.85, 24 -> 1, 49 -> 1.15, 99 -> 1.3, 250 -> 1.5, 1000 -> 1.8.
-Business-age multipliers: 0 -> 0.4, 2 -> 0.5, 4 -> 0.75, 10 -> 1, 15 -> 1.3, 25 -> 1.45, 50 -> 1.6.
-Factors are interpolated linearly between points and clamped at endpoints. Lower estimate = revenue base * employee factor * age factor. Upper estimate = unrounded lower estimate * 1.43. Each bound is rounded independently to the nearest $500. Missing inputs use 24 employees, 10 years and undisclosed revenue, displaying an example estimate. Industry and systems do not change the calculation.
-In 2026, 24 employees, $1–10M revenue and a 2015 founding year produce $30,500–$44,000. The current model's maximum range is $432,000–$618,000. These are model outputs, not guaranteed prices or evidence of completed deals.
+Base pricing is Handshake AI's published data-partnership calculator, read 2026-10-11. Value = $140,000 + $2,333 per employee + $11,667 per year of operation + $15.75 per GB of records. Low bound = 0.75 x value; high bound = 1.25 x value; both x a country factor (US 1.00, Canada 0.75, UK and Europe 0.75, Australia, New Zealand and elsewhere 0.30), then x 1.01 rounded up. Below 50 staff the low bound is reduced by up to $69,102 x country factor (full at 20 staff, none at 50+). Employees count up to 200 and years up to 20; above either the range ends with a plus sign.
+Records: the low bound assumes 1 GB per employee-year. The high bound rises with selected systems in equal steps from 1 GB (none) to 14 GB (six or more).
+Qualifying bar: 20+ employees and 3+ years. Below it the calculator shows no number. Revenue and industry do not change the result.
+Examples: 100 staff, 10 years, US, six systems = $383,083 to $896,969 (identical to Handshake's figure); same in Canada/UK/Europe = $287,313 to $672,727; same in Australia/NZ = $114,925 to $269,091; 50 staff, 10 years, US, three systems = $288,755 to $545,883; 20 staff, 3 years, US, no systems = $100,000 to $283,825. These are model outputs, not guaranteed prices or evidence of completed deals.
 Methodology: https://sellmycompanydata.com/data-valuation/
 
 ## Licensing

@@ -85,10 +85,26 @@
       "mainEntity": [
         {
           "@type": "Question",
+          "name": "Am I big enough to qualify?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Labs licence from companies with 20 or more employees and at least 3 years of records. Some buyers set a higher bar: 30 or more staff, and the larger programmes want 100 or more. If you are below 20 employees or 3 years, the estimate will say so rather than show a number, and we will keep your details for when that changes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you work with companies outside the US?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Buyers pay most for US companies. Published buyer pricing puts Canada, the UK and Europe at about 75% of US rates, and other countries, including Australia and New Zealand, at about 30%. The calculator adjusts for where you are based."
+          }
+        },
+        {
+          "@type": "Question",
           "name": "Who buys the data?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "We licence de-identified business workflow data to AI labs and research teams training frontier models. Your data is never resold to competitors or published."
+            "text": "Specialist AI data companies that supply the frontier labs, and some labs directly. We take your records to several of them and you pick the offer. Buyers use the data to train and test AI models under contracts that keep it confidential and ban publishing it. Your company is not named."
           }
         },
         {
@@ -104,7 +120,23 @@
           "name": "Will my customers' information be exposed?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No. Personal and customer-identifying information is removed during processing to a documented standard, and original datasets are deleted once processing is complete."
+            "text": "Not when it is done properly. A specialist removes names, emails, account numbers and other identifiers before any buyer sees the records, and files you hold for your own clients stay out entirely. No method removes every risk, so buyers must also agree in writing never to try to identify anyone."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What happens to the data after it is licensed?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It is de-identified, built into training and testing sets, and used only as the licence allows. Buyers delete their copies at the end of the term. A model that has already learned from the data keeps what it learned, which is why the scrubbing happens before anything is delivered."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who is legally responsible?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You are, for what you hand over. Buyer contracts make the seller responsible for having the right to share the records, so we check that first: no client files, no regulated records and nothing a contract stops you sharing."
           }
         },
         {
@@ -120,7 +152,7 @@
           "name": "How fast do I get paid?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Within 7 days of your data passing review. Most companies go from first call to payment in two to three weeks."
+            "text": "Buyers make an offer within one to two weeks of reviewing a sample. Payment usually lands two to four weeks after signing, and some buyers pay 30 to 60 days after delivery."
           }
         },
         {
@@ -128,7 +160,7 @@
           "name": "Does this take a lot of my team's time?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Usually a single call and granting read-only access. We handle extraction, cleaning and de-identification."
+            "text": "Usually a scoping call, then an export or read-only access to the systems you choose. The buyer handles extraction, cleaning and de-identification."
           }
         }
       ]
@@ -146,9 +178,9 @@
 <script defer src="/polish.js?v=2"></script>
 <link rel="stylesheet" href="/typography.css?v=3">
 <link rel="preload" href="/assets/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/brand.css?v=licensing-4">
+<link rel="stylesheet" href="/brand.css?v=licensing-5">
 <link rel="stylesheet" href="/audit.css?v=1">
-<script defer src="/site-events.js?v=1"></script>
+<script defer src="/site-events.js?v=2"></script>
 <meta name="twitter:image:alt" content="Monetize the data supply only you have. Your company’s data could be worth $20K–$5M, subject to data review and agreed terms.">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <link rel="stylesheet" href="/analytics.css?v=1">
@@ -175,7 +207,7 @@
   <div class="appbar-inner">
     <div class="est">
       <div class="k" id="appbar-label">Example estimate</div>
-      <div class="v" id="appbar-v">$29K &ndash; $41.5K</div>
+      <div class="v" id="appbar-v">$289K &ndash; $546K</div>
     </div>
     <a class="btn btn-primary" id="appbar-btn" href="#apply">Book a call</a>
   </div>
@@ -222,15 +254,16 @@
   <div class="wrap">
     <div class="sec-head">
       <h2>Estimate what your data could license for</h2>
-      <p>Enter your employee count, annual revenue and year founded for an instant estimate. Industry and systems help us prepare for your call.</p>
+      <p>Enter your team size, year founded and where you are based. The estimate updates as you go. Add the systems you use: more systems means more records, and a higher top end.</p>
       <p class="bar-note">We licence from companies with <b>20 or more employees</b> and <b>at least 3 years</b> of records. Below that, labs are not currently buying.</p>
     </div>
     <div class="calc">
       <div class="result">
         <div class="k" id="estimate-label">Example estimate</div>
-        <div class="val" id="range" role="status" aria-live="polite" aria-atomic="true">$217K &ndash; $325.5K</div>
+        <div class="val" id="range" role="status" aria-live="polite" aria-atomic="true">$289K &ndash; $546K</div>
         <div class="bar" id="bar-wrap"><i id="bar"></i></div>
-        <div class="note" id="estimate-note">An indicative range, not a buyer offer. <span id="estimate-hint">Complete all three business questions for your estimate. </span>Final pricing depends on the records, volume, quality, permissions and buyer review. <a href="/data-valuation/">How we calculate this</a>.</div>
+        <div class="note" id="estimate-note">An indicative range, not a buyer offer. <span id="estimate-hint">Example: a 50-person US company, 10 years old, on 3 systems. Enter your details to see yours. </span>Final pricing depends on the records, volume, quality, permissions and buyer review. <a href="/data-valuation/">How we calculate this</a>.</div>
+        <p class="note estimate-detail" id="estimate-detail" hidden></p>
         <div id="notfit" hidden>
           <p class="notfit-h">Not a fit yet</p>
           <p>AI labs licence operating data from companies with <b>20 or more employees</b> and <b>at least 3 years</b> of records. Yours does not clear that bar today. That is the buyers' bar, not a judgement on your business.</p>
@@ -244,21 +277,19 @@
           <input id="emp" type="number" min="1" step="1" inputmode="numeric" placeholder="e.g. 24">
         </div>
         <div class="field">
-          <label for="rev">Annual revenue</label>
-          <select id="rev">
-            <option value="">Select revenue</option>
-            <option value="pre">Pre-revenue</option>
-            <option value="0-1m">$0–1M</option>
-            <option value="1-10m">$1–10M</option>
-            <option value="10-50m">$10–50M</option>
-            <option value="50-200m">$50–200M</option>
-            <option value="200m+">$200M+</option>
-            <option value="undisclosed">Prefer not to say</option>
-          </select>
-        </div>
-        <div class="field">
           <label for="yr">Year founded</label>
           <select id="yr"></select>
+        </div>
+        <div class="field">
+          <label for="ctry">Where is the company based?</label>
+          <select id="ctry">
+            <option value="us">United States</option>
+            <option value="ca">Canada</option>
+            <option value="uk">United Kingdom</option>
+            <option value="eu">Europe (EU, EEA or Switzerland)</option>
+            <option value="anz">Australia or New Zealand</option>
+            <option value="other">Somewhere else</option>
+          </select>
         </div>
         <div class="field">
           <label for="ind">Industry</label>
@@ -429,12 +460,15 @@
   <div class="wrap narrow faq">
     <div class="sec-head"><h2>Questions</h2></div>
     <details open><summary>Am I big enough to qualify?</summary><p>Labs licence from companies with <b>20 or more employees</b> and <b>at least 3 years</b> of records. Some buyers set a higher bar: 30 or more staff, and the larger programmes want 100 or more. If you are below 20 employees or 3 years, the estimate will say so rather than show a number, and we will keep your details for when that changes.</p></details>
-    <details open><summary>Who buys the data?</summary><p>We licence de-identified business workflow data to AI labs and research teams training frontier models. Your data is never resold to competitors or published.</p></details>
+    <details open><summary>Do you work with companies outside the US?</summary><p>Yes. Buyers pay most for US companies. Published buyer pricing puts Canada, the UK and Europe at about 75% of US rates, and other countries, including Australia and New Zealand, at about 30%. The calculator adjusts for where you are based.</p></details>
+    <details><summary>Who buys the data?</summary><p>Specialist AI data companies that supply the frontier labs, and some labs directly. We take your records to several of them and you pick the offer. Buyers use the data to train and test AI models under contracts that keep it confidential and ban publishing it. Your company is not named.</p></details>
     <details><summary>What kind of data qualifies?</summary><p>Operational records from the tools your team uses daily: CRM pipelines, support tickets, contracts, invoices, project boards, SOPs and internal docs. Larger teams and more years of history generally mean a higher payout.</p></details>
-    <details><summary>Will my customers' information be exposed?</summary><p>No. Personal and customer-identifying information is removed during processing to a documented standard, and original datasets are deleted once processing is complete.</p></details>
+    <details><summary>Will my customers' information be exposed?</summary><p>Not when it is done properly. A specialist removes names, emails, account numbers and other identifiers before any buyer sees the records, and files you hold for your own clients stay out entirely. No method removes every risk, so buyers must also agree in writing never to try to identify anyone.</p></details>
+    <details><summary>What happens to the data after it is licensed?</summary><p>It is de-identified, built into training and testing sets, and used only as the licence allows. Buyers delete their copies at the end of the term. A model that has already learned from the data keeps what it learned, which is why the scrubbing happens before anything is delivered.</p></details>
+    <details><summary>Who is legally responsible?</summary><p>You are, for what you hand over. Buyer contracts make the seller responsible for having the right to share the records, so we check that first: no client files, no regulated records and nothing a contract stops you sharing.</p></details>
     <details><summary>Do I still own my data?</summary><p>Yes. This is a licence, not a sale. You keep ownership and the licence is bounded by scope, permitted use and duration.</p></details>
-    <details><summary>How fast do I get paid?</summary><p>Within 7 days of your data passing review. Most companies go from first call to payment in two to three weeks.</p></details>
-    <details><summary>Does this take a lot of my team's time?</summary><p>Usually a single call and granting read-only access. We handle extraction, cleaning and de-identification.</p></details>
+    <details><summary>How fast do I get paid?</summary><p>Buyers make an offer within one to two weeks of reviewing a sample. Payment usually lands two to four weeks after signing, and some buyers pay 30 to 60 days after delivery.</p></details>
+    <details><summary>Does this take a lot of my team's time?</summary><p>Usually a scoping call, then an export or read-only access to the systems you choose. The buyer handles extraction, cleaning and de-identification.</p></details>
   </div>
 </section>
 </main>
@@ -445,7 +479,7 @@
   <div>&copy; 2026 Sell My Company Data. All rights reserved.</div>
 </div></div></footer>
 
-<script src="/valuation.js?v=2"></script>
+<script src="/valuation.js?v=3"></script>
 <script>
 (function(){
   var y=document.getElementById('yr');
@@ -460,21 +494,47 @@ chips.forEach(function(c){
   c.addEventListener('click',function(){
     c.classList.toggle('on');
     c.setAttribute('aria-pressed', c.classList.contains('on') ? 'true' : 'false');
-    calc();
+    calc(true);
   });
 });
 function vis(id, show){ var el=document.getElementById(id); if(!el) return; el.hidden=!show; el.style.display = show ? '' : 'none'; }
-// A sample qualifying company, shown before the visitor enters their own numbers.
-var EXAMPLE_INPUT={employees:24,revenue:'1-10m',founded:'2015',systems:['a','b','c']};
-function calc(){
+// Default the country from the browser locale. Visitors can change it.
+(function(){
+  var sel=document.getElementById('ctry'); if(!sel) return;
+  var eu=['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','CH'];
+  var langs=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||''];
+  var m=/[-_]([A-Za-z]{2})$/.exec(String(langs[0]||''));
+  var cc=m?m[1].toUpperCase():'';
+  sel.value = (cc===''||cc==='US') ? 'us' : cc==='CA' ? 'ca' : (cc==='GB'||cc==='UK') ? 'uk' : (cc==='AU'||cc==='NZ') ? 'anz' : eu.indexOf(cc)>=0 ? 'eu' : 'other';
+})();
+// A sample qualifying company, shown until the visitor touches the calculator.
+var EXAMPLE_INPUT={employees:50,founded:String(new Date().getFullYear()-10),country:'us',systems:['a','b','c']};
+var BAR_MAX=DataValuation.estimate({employees:DataValuation.MAX_EMPLOYEES,founded:String(new Date().getFullYear()-DataValuation.MAX_YEARS),country:'us',systems:['a','b','c','d','e','f']}).low;
+var REGION_NOTE='Buyers pay most for US companies. Published buyer pricing puts Canada, the UK and Europe at about 75% of US rates, and everywhere else at about 30%.';
+var INDUSTRY_NOTE={
+  'Legal':'Client files stay out of any licence. Buyers license your firm\u2019s own internal records, after a privacy check.',
+  'Accounting & bookkeeping':'Client files and tax returns stay out of any licence. Buyers license your firm\u2019s own internal records, after a privacy check.',
+  'Healthcare':'Patient records stay out of any licence. Buyers license your own operating records, after a privacy check.',
+  'Financial services':'Customer account data stays out of any licence. Buyers license your own operating records, after a privacy check.',
+  'Semiconductors':'In demand right now. Design data may need an export-control check before it can be licensed.',
+  'Chemistry & materials':'In demand right now: labs are buying chemistry and materials records.',
+  'Manufacturing':'In demand right now: work orders, machine programs and quality records are sought after.',
+  'Logistics & 3PL':'In demand right now: operations and fulfilment records are sought after.',
+  'Software & SaaS':'Code with its history (tickets, reviews, docs) is worth more than code alone.'
+};
+var touched=false, estimateMode='example';
+function calc(fromUser){
+  if(fromUser) touched=true;
   var emp=Number(document.getElementById('emp').value)||0;
   var founded=document.getElementById('yr').value;
-  var input={ employees:emp, revenue:document.getElementById('rev').value, founded:founded, systems:selectedSystems() };
+  var input={ employees:emp, founded:founded, country:document.getElementById('ctry').value, systems:selectedSystems() };
   var complete = emp>=1 && Boolean(founded);
-  var result = complete ? DataValuation.estimate(input) : DataValuation.estimate(EXAMPLE_INPUT);
-  var mode = !complete ? 'example' : (result.qualifies ? 'yours' : 'below');
+  var mode = complete ? 'yours' : (touched ? 'missing' : 'example');
+  var result = mode==='example' ? DataValuation.estimate(EXAMPLE_INPUT) : DataValuation.estimate(input);
+  if(mode==='yours' && !result.qualifies) mode='below';
+  estimateMode = mode;
 
-  var label = mode==='below' ? 'Not eligible yet' : (mode==='yours' ? 'Your indicative estimate' : 'Example estimate');
+  var label = mode==='below' ? 'Not eligible yet' : mode==='yours' ? 'Your indicative estimate' : mode==='missing' ? 'Your estimate' : 'Example estimate';
   document.getElementById('estimate-label').textContent = label;
   var abLabel=document.getElementById('appbar-label'); if(abLabel) abLabel.textContent = label;
   document.getElementById('estimate-hint').hidden = mode!=='example';
@@ -488,20 +548,38 @@ function calc(){
   vis('estimate-note', !below);
   vis('calc-cta', !below);
 
+  var rangeEl=document.getElementById('range');
+  var detail=document.getElementById('estimate-detail');
   var av=document.getElementById('appbar-v');
-  if(below){
-    document.getElementById('estimate-range').value='';
-    if(av) av.textContent='Not eligible yet';
+  var hidden=document.getElementById('estimate-range');
+  rangeEl.classList.toggle('val-prompt', mode==='missing');
+  if(below || mode==='missing'){
+    hidden.value='';
+    if(detail){ detail.textContent=''; vis('estimate-detail', false); }
+    if(below){ if(av) av.textContent='Not eligible yet'; return; }
+    var ask = emp<1 ? 'Add your team size' : 'Add the year founded';
+    rangeEl.textContent = ask;
+    if(av) av.textContent = ask;
+    document.getElementById('bar').style.width = '6%';
     return;
   }
-  var range = DataValuation.format(result.low)+' \u2013 '+DataValuation.format(result.high);
-  document.getElementById('range').textContent = range;
-  document.getElementById('estimate-range').value = mode==='example' ? '' : range;
+  var range = DataValuation.format(result.low)+' \u2013 '+DataValuation.format(result.high)+(result.capped?'+':'');
+  rangeEl.textContent = range;
   if(av) av.textContent = range;
-  document.getElementById('bar').style.width = Math.max(6,Math.min(100,result.low/1207.5*100))+'%';
+  hidden.value = mode==='yours' ? range+' ('+DataValuation.REGION_LABEL[result.region]+')' : '';
+  document.getElementById('bar').style.width = Math.max(6,Math.min(100,result.low/BAR_MAX*100))+'%';
+  var notes=[];
+  if(mode==='yours'){
+    if(result.region!=='us') notes.push(REGION_NOTE);
+    if(result.fewerBuyers) notes.push('Some buyers want 30 or more staff, so expect fewer bidders.');
+    if(result.capped) notes.push('Above 200 staff or 20 years, buyers price you individually. Published programmes go past $4M.');
+    if(result.systems===0) notes.push('Add the systems you use to raise the top of the range.');
+    var ind=INDUSTRY_NOTE[document.getElementById('ind').value]; if(ind) notes.push(ind);
+  }
+  if(detail){ detail.textContent=notes.join(' '); vis('estimate-detail', notes.length>0); }
 }
-['emp','rev','yr'].forEach(function(id){
-  ['input','change'].forEach(function(event){ document.getElementById(id).addEventListener(event,calc); });
+['emp','yr','ctry','ind'].forEach(function(id){
+  ['input','change'].forEach(function(event){ document.getElementById(id).addEventListener(event,function(){ calc(true); }); });
 });
 calc();
 
@@ -557,11 +635,11 @@ calc();
       employees: document.getElementById('emp').value,
       qualified: qualified,
       years: yrsVal,
-      revenue: document.getElementById('rev').value,
       founded: document.getElementById('yr').value,
       industry: document.getElementById('ind').value,
       systems: chips.filter(function(c){return c.classList.contains('on');}).map(function(c){return c.textContent.trim();}),
-      estimateIsExample: document.getElementById('estimate-label').textContent === 'Example estimate',
+      estimateIsExample: estimateMode !== 'yours',
+      companyCountry: DataValuation.REGION_LABEL[document.getElementById('ctry').value] || '',
       authority: document.getElementById('authority').value,
       dataContext: document.getElementById('data-context').value.trim(),
       _gotcha: document.getElementById('_gotcha').value,

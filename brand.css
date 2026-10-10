@@ -139,3 +139,6 @@ footer a:focus-visible{outline-color:var(--bg)}
 .licensing-steps li:last-child p{color:var(--bg)}
 @media(max-width:1100px) and (min-width:901px){.licensing-steps{gap:18px}.licensing-steps li{padding:22px}.licensing-steps h3{font-size:26px}.process-heading{gap:12px}}
 @media(max-width:900px){.licensing-steps{grid-template-columns:1fr;gap:14px}.licensing-steps h3{font-size:24px}.licensing-steps p{font-size:16px}}
+
+.result .val.val-prompt{font-size:clamp(22px,2.2vw,28px);color:var(--muted,#5b5e6b)}
+.result .estimate-detail{margin-top:10px}

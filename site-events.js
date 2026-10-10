@@ -10,13 +10,13 @@
     window.dispatchEvent(new CustomEvent('smcd:conversion',{detail:detail}));
   }};
   var started=false,completed=false;
-  ['emp','rev','yr'].forEach(function(id){
+  ['emp','yr','ctry'].forEach(function(id){
     var input=document.getElementById(id);if(!input)return;
     input.addEventListener('input',changed);input.addEventListener('change',changed);
   });
   function changed(){
     if(!started){window.SMCD.track('estimate_started');started=true;}
-    if(!completed && Number(document.getElementById('emp').value)>=1 && document.getElementById('rev').value && document.getElementById('yr').value){window.SMCD.track('estimate_completed');completed=true;}
+    if(!completed && Number(document.getElementById('emp').value)>=1 && document.getElementById('yr').value){window.SMCD.track('estimate_completed');completed=true;}
   }
   var grid=document.getElementById('industry-grid'),toggle=document.querySelector('.industry-toggle');
   if(grid&&toggle){
