@@ -58,14 +58,14 @@ try:
     expect(page.locator('.business-card:visible')).to_have_count(12)
     page.locator('.industry-toggle').click()
     page.locator('#emp').fill('24')
-    page.locator('#rev').select_option('1-10m')
+    page.locator('#ctry').select_option('us')
     page.locator('#yr').select_option('2015')
     page.locator('#ind').select_option('Software & SaaS')
     page.locator('#sys button').first.click()
     expect(page.locator('#estimate-label')).to_have_text('Your indicative estimate')
     expect(page.locator('#estimate-hint')).to_be_hidden()
     actual = page.locator('#range').inner_text()
-    expected = page.evaluate("()=>{let r=DataValuation.estimate({employees:24,revenue:'1-10m',founded:2015});return DataValuation.format(r.low)+' – '+DataValuation.format(r.high)}")
+    expected = page.evaluate("()=>{let r=DataValuation.estimate({employees:24,founded:'2015',country:'us',systems:['Salesforce']});return DataValuation.format(r.low)+' – '+DataValuation.format(r.high)}")
     assert actual == expected, (actual,expected)
     page.locator('#value .result').scroll_into_view_if_needed()
     page.wait_for_timeout(150)
@@ -81,7 +81,7 @@ try:
     page.locator('#lead-submit').click()
     expect(page.locator('#booking')).to_be_visible()
     payload = calls[-1][1]
-    for key,value in {'employees':'24','revenue':'1-10m','founded':'2015','industry':'Software & SaaS','systems':['Salesforce'],'estimateIsExample':False,'authority':'I own the business','dataContext':'Three years of support tickets'}.items():
+    for key,value in {'employees':'24','companyCountry':'United States','founded':'2015','industry':'Software & SaaS','systems':['Salesforce'],'estimateIsExample':False,'authority':'I own the business','dataContext':'Three years of support tickets'}.items():
       assert payload[key] == value, (key,payload)
     calendar = urlparse(page.locator('#booking-calendar').get_attribute('src'))
     assert calendar.netloc == 'cal.com' and calendar.path == '/jamesrowdyy/15min'
