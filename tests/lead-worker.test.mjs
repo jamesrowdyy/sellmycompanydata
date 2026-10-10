@@ -6,7 +6,7 @@ const map = new Map();
 let failWrite=false, requests=[], responseOk=true, pending=[];
 const kv = {put:async(k,v)=>{if(failWrite) throw Error('storage');map.set(k,v)},get:async(k,type)=>{const x=map.get(k);return x ? type==='json'?JSON.parse(x):x:null},list:async()=>({keys:[...map.keys()].filter(k=>k.startsWith('lead:')).map(name=>({name})),list_complete:true}),delete:async(k)=>map.delete(k)};
 const env={LEADS:kv,SLACK_WEBHOOK:'https://old.example.invalid/never-send'};
-globalThis.fetch=async(url,init)=>{requests.push({url,body:JSON.parse(init.body)});return new Response(responseOk?'ok':'error',{status:responseOk?200:503})};
+globalThis.fetch=async(url,init)=>{requests.push({url,body:JSON.parse(init.body)});if(String(url).includes('/api/chat.postMessage'))return new Response(JSON.stringify({ok:responseOk}),{status:200,headers:{'content-type':'application/json'}});return new Response(responseOk?'ok':'error',{status:responseOk?200:503})};
 const ctx={waitUntil:p=>pending.push(p)};
 async function post(route,payload){return worker.fetch(new Request('https://sellmycompanydata.com/api/'+route,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}),env,ctx)}
 const seller={firstName:'AUTOMATED',lastName:'TEST',email:'test@example.invalid',company:'SMCD AUTOMATED TEST',employees:'24',revenue:'1m-10m',founded:'2015',industry:'software',systems:['Slack','Xero'],estimateIsExample:false,authority:'Owner',dataContext:'x'.repeat(2000),range:'$30.5K–$44K'};
@@ -24,3 +24,16 @@ responseOk=false;await post('lead',seller);await Promise.all(pending);pending=[]
 for(let i=0;i<6;i++){record=JSON.parse(map.get(retryKey));record.notification.nextAttemptAt='2000-01-01T00:00:00Z';map.set(retryKey,JSON.stringify(record));await worker.scheduled({},env,ctx);await Promise.all(pending);pending=[];}
 record=JSON.parse(map.get(retryKey));assert.equal(record.notification.attempts,5);assert.equal(record.notification.status,'failed');assert.equal(requests.length,8);
 console.log('PASS: storage failure, full calculator context, seller/buyer/referral, validation, old-route suppression, dedicated delivery, free-text minimization, no repeat delivered messages, bounded retry.');
+// Bot-token transport: posts via chat.postMessage when no incoming webhook exists.
+requests=[];responseOk=true;delete env.SLACK_LEADS_WEBHOOK;env.SLACK_LEADS_BOT_TOKEN='xoxb-test-token';
+const tokenSeller={...seller,email:'token@example.invalid',company:'SMCD TOKEN TEST'};
+assert.equal((await post('lead',tokenSeller)).status,200);await Promise.all(pending);pending=[];
+let tokenKey=[...map.keys()].at(-1);record=JSON.parse(map.get(tokenKey));
+assert.equal(record.notification.status,'delivered','token transport must mark delivered');
+const posted=requests.at(-1);
+assert.ok(String(posted.url).includes('slack.com/api/chat.postMessage'),'token path posts to chat.postMessage');
+assert.equal(posted.body.channel,'C0C7RUJV684','posts to the dedicated channel stored on the record');
+assert.equal(typeof posted.body.text,'string');assert.ok(!posted.body.text.includes(tokenSeller.dataContext));
+responseOk=false;await post('lead',tokenSeller);await Promise.all(pending);pending=[];
+record=JSON.parse(map.get([...map.keys()].at(-1)));assert.equal(record.notification.status,'pending','failed Slack post stays pending for retry');
+console.log('PASS: bot-token delivery via chat.postMessage to the dedicated channel, with retry on failure.');
