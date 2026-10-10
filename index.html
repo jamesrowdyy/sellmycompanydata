@@ -186,7 +186,7 @@
 <link rel="stylesheet" href="/analytics.css?v=1">
 <script defer src="/analytics-config.js?v=2"></script>
 <script defer src="/analytics.js?v=1"></script>
-<link rel="stylesheet" href="/mobile.css?v=20261008-simple-hero">
+<link rel="stylesheet" href="/mobile.css?v=20261011-calc">
 </head>
 <body class="seller-page">
 
@@ -262,7 +262,7 @@
         <div class="k" id="estimate-label">Example estimate</div>
         <div class="val" id="range" role="status" aria-live="polite" aria-atomic="true">$289K &ndash; $546K</div>
         <div class="bar" id="bar-wrap"><i id="bar"></i></div>
-        <div class="note" id="estimate-note">An indicative range, not a buyer offer. <span id="estimate-hint">Example: a 50-person US company, 10 years old, on 3 systems. Enter your details to see yours. </span>Final pricing depends on the records, volume, quality, permissions and buyer review. <a href="/data-valuation/">How we calculate this</a>.</div>
+        <div class="note" id="estimate-note">An indicative range, not a buyer offer. <span id="estimate-hint">Example: a 50-person US company, 10 years old, on 3 systems. Enter your details to see yours. </span>Final pricing depends on your records and buyer review. <a href="/data-valuation/">How we calculate this</a>.</div>
         <p class="note estimate-detail" id="estimate-detail" hidden></p>
         <div id="notfit" hidden>
           <p class="notfit-h">Not a fit yet</p>
@@ -510,12 +510,18 @@ function vis(id, show){ var el=document.getElementById(id); if(!el) return; el.h
 // A sample qualifying company, shown until the visitor touches the calculator.
 var EXAMPLE_INPUT={employees:50,founded:String(new Date().getFullYear()-10),country:'us',systems:['a','b','c']};
 var BAR_MAX=DataValuation.estimate({employees:DataValuation.MAX_EMPLOYEES,founded:String(new Date().getFullYear()-DataValuation.MAX_YEARS),country:'us',systems:['a','b','c','d','e','f']}).low;
-var REGION_NOTE='Buyers pay most for US companies. Published buyer pricing puts Canada, the UK and Europe at about 75% of US rates, and everywhere else at about 30%.';
+var REGION_NOTE={
+  ca:'Buyers pay about 75% of US rates for Canadian companies.',
+  uk:'Buyers pay about 75% of US rates for UK companies.',
+  eu:'Buyers pay about 75% of US rates for European companies.',
+  anz:'Buyers pay about 30% of US rates for Australian and New Zealand companies.',
+  other:'Outside the US, Canada, the UK and Europe, buyers pay about 30% of US rates.'
+};
 var INDUSTRY_NOTE={
-  'Legal':'Client files stay out of any licence. Buyers license your firm\u2019s own internal records, after a privacy check.',
-  'Accounting & bookkeeping':'Client files and tax returns stay out of any licence. Buyers license your firm\u2019s own internal records, after a privacy check.',
-  'Healthcare':'Patient records stay out of any licence. Buyers license your own operating records, after a privacy check.',
-  'Financial services':'Customer account data stays out of any licence. Buyers license your own operating records, after a privacy check.',
+  'Legal':'Client files stay out. Buyers license your firm\u2019s own records.',
+  'Accounting & bookkeeping':'Client files and tax returns stay out. Buyers license your firm\u2019s own records.',
+  'Healthcare':'Patient records stay out. Buyers license your own operating records.',
+  'Financial services':'Customer account data stays out. Buyers license your own operating records.',
   'Semiconductors':'In demand right now. Design data may need an export-control check before it can be licensed.',
   'Chemistry & materials':'In demand right now: labs are buying chemistry and materials records.',
   'Manufacturing':'In demand right now: work orders, machine programs and quality records are sought after.',
@@ -570,7 +576,7 @@ function calc(fromUser){
   document.getElementById('bar').style.width = Math.max(6,Math.min(100,result.low/BAR_MAX*100))+'%';
   var notes=[];
   if(mode==='yours'){
-    if(result.region!=='us') notes.push(REGION_NOTE);
+    if(REGION_NOTE[result.region]) notes.push(REGION_NOTE[result.region]);
     if(result.fewerBuyers) notes.push('Some buyers want 30 or more staff, so expect fewer bidders.');
     if(result.capped) notes.push('Above 200 staff or 20 years, buyers price you individually. Published programmes go past $4M.');
     if(result.systems===0) notes.push('Add the systems you use to raise the top of the range.');
@@ -600,7 +606,7 @@ calc();
     var value = document.getElementById('value').getBoundingClientRect();
     var inResult = result.top < window.innerHeight && result.bottom > 0;
     var editing = /^(INPUT|SELECT|TEXTAREA)$/.test(document.activeElement.tagName);
-    var visible = window.matchMedia('(max-width:900px)').matches && value.top < 0 && !inApply && !inResult && !editing;
+    var visible = window.matchMedia('(max-width:900px)').matches && value.top < 0 && !inApply && !inResult && !editing && estimateMode !== 'below';
     bar.classList.toggle('show', visible);
     bar.inert = !visible;
   }
