@@ -1,0 +1,12 @@
+.booking-content{padding-top:56px;padding-bottom:56px}
+.booking-intro{max-width:760px;margin:0 auto 32px;text-align:center}
+.booking-eyebrow{font-size:13px;color:var(--deep-green);margin:0 0 20px}
+.booking-intro h1{font-weight:500;font-size:clamp(36px,4.3vw,56px);line-height:1.08;letter-spacing:-.045em;margin:0 0 20px}
+.booking-lead{max-width:650px;margin:0 auto 16px;font-size:18px;color:var(--muted);line-height:1.6}
+.booking-note{font-size:14px;color:var(--muted);margin:0}
+.booking-calendar{background:#fff;border:1px solid var(--line2);border-radius:20px;overflow:hidden}
+#company-data-calendar{width:100%;min-height:650px;overflow:auto}.booking-calendar iframe{width:100%;border:0}
+.booking-help,.booking-privacy{text-align:center;color:var(--muted);font-size:14px;margin:18px auto 0;max-width:700px}
+.booking-help a,.booking-privacy a{text-decoration:underline;text-underline-offset:3px;color:var(--deep-green)}
+.booking-page footer nav a{color:var(--bg)}
+@media(max-width:900px){.booking-content{padding-top:30px;padding-bottom:36px}.booking-intro{margin-bottom:24px}.booking-intro h1{font-size:36px}.booking-lead{font-size:16px}.booking-eyebrow{font-size:12px;margin-bottom:16px}.booking-calendar{border-radius:14px}#company-data-calendar{min-height:650px}.booking-help,.booking-privacy{font-size:13px}}
