@@ -26,7 +26,11 @@ const MAX_ATTEMPTS = 5;
 const RETRY_DELAYS = [60, 300, 1800, 7200, 21600];
 async function deliver(key, env) {
   // Never fall back to the previous TwinTone-bound webhook.
-  if (!env.SLACK_LEADS_WEBHOOK) return;
+  // Two supported transports: a channel incoming webhook (SLACK_LEADS_WEBHOOK)
+  // or a bot token posting via chat.postMessage (SLACK_LEADS_BOT_TOKEN).
+  const hook = env.SLACK_LEADS_WEBHOOK;
+  const token = env.SLACK_LEADS_BOT_TOKEN;
+  if (!hook && !token) return;
   let L = await env.LEADS.get(key, 'json');
   if (!L || !L.notification || L.notification.status !== 'pending') return;
   const n = L.notification;
@@ -38,19 +42,31 @@ async function deliver(key, env) {
   await env.LEADS.put(key, JSON.stringify(L));
   let delivered = false;
   try {
-    const r = await fetch(env.SLACK_LEADS_WEBHOOK, {
-      method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ text: slackText(L.kind, L), unfurl_links: false, unfurl_media: false }),
-      signal: AbortSignal.timeout(10000)
-    });
-    delivered = r.ok && (await r.text()).trim() === 'ok';
+    const text = slackText(L.kind, L);
+    if (token) {
+      const channel = (L.notification && L.notification.channel) || env.SLACK_LEADS_CHANNEL;
+      const r = await fetch('https://slack.com/api/chat.postMessage', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token },
+        body: JSON.stringify({ channel: channel, text: text, unfurl_links: false, unfurl_media: false }),
+        signal: AbortSignal.timeout(10000)
+      });
+      delivered = r.ok && (await r.json()).ok === true;
+    } else {
+      const r = await fetch(hook, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: text, unfurl_links: false, unfurl_media: false }),
+        signal: AbortSignal.timeout(10000)
+      });
+      delivered = r.ok && (await r.text()).trim() === 'ok';
+    }
   } catch (_) {}
   n.status = delivered ? 'delivered' : n.attempts >= MAX_ATTEMPTS ? 'failed' : 'pending';
   if (delivered) n.deliveredAt = new Date().toISOString();
   await env.LEADS.put(key, JSON.stringify(L));
 }
 async function retryNotifications(env) {
-  if (!env.SLACK_LEADS_WEBHOOK) return;
+  if (!env.SLACK_LEADS_WEBHOOK && !env.SLACK_LEADS_BOT_TOKEN) return;
   const cursor = await env.LEADS.get('internal:notification_cursor') || undefined;
   const page = await env.LEADS.list({ prefix: 'lead:', limit: 25, ...(cursor ? { cursor } : {}) });
   for (const key of page.keys) {
@@ -101,7 +117,7 @@ export default {
     L.notification = { channel: 'C0C7RUJV684', status: 'pending', attempts: 0 };
     try { await env.LEADS.put(key, JSON.stringify(L)); }
     catch (_) { return json({ ok: false, error: 'storage_unavailable' }, 503); }
-    if (env.SLACK_LEADS_WEBHOOK && ctx) ctx.waitUntil(deliver(key, env).catch(() => {}));
+    if ((env.SLACK_LEADS_WEBHOOK || env.SLACK_LEADS_BOT_TOKEN) && ctx) ctx.waitUntil(deliver(key, env).catch(() => {}));
     return json({ ok: true, id: id, notification: 'pending' });
   },
   async scheduled(controller, env, ctx) {
