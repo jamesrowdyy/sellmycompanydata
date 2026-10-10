@@ -16,11 +16,31 @@ function f(d, k, max = 400) { return String((d && d[k]) || '').trim().slice(0, m
 function slackText(kind, L) {
   const label = kind === 'buyer' ? 'Buyer brief' : kind === 'refer' ? 'Referral' : 'Seller enquiry';
   const safe = value => String(value || '-').replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
-  return ['Sell My Company Data — ' + label,
-    'Company: ' + safe(L.company || L.organization),
-    'Contact: ' + safe(L.email || L.referrerEmail),
-    'Reference: ' + L.id,
-    'Details saved in the Sell My Company Data lead store.'].join(NL);
+  const lines = ['Sell My Company Data — ' + label];
+  if (kind === 'lead') {
+    // Triage first: the qualifying bar is 20+ staff and 3+ years.
+    const emp = Number(L.employees) || 0;
+    const yrs = Number(L.years) || 0;
+    const systems = (L.systems || []).join(', ');
+    lines.push(
+      (L.qualified === true ? 'QUALIFIED' : 'BELOW THE BAR') + ' · ' + emp + ' staff · ' + yrs + ' yrs',
+      'Company: ' + safe(L.company),
+      'Contact: ' + safe(L.email),
+      'Industry: ' + safe(L.industry),
+      'Systems: ' + safe(systems),
+      'Estimate shown: ' + safe(L.range),
+      'Connection: ' + safe(L.authority),
+      'Reference: ' + L.id
+    );
+  } else {
+    lines.push(
+      'Company: ' + safe(L.company || L.organization),
+      'Contact: ' + safe(L.email || L.referrerEmail),
+      'Reference: ' + L.id
+    );
+  }
+  lines.push('Details saved in the Sell My Company Data lead store.');
+  return lines.join(NL);
 }
 const MAX_ATTEMPTS = 5;
 const RETRY_DELAYS = [60, 300, 1800, 7200, 21600];
@@ -94,6 +114,9 @@ export default {
       L.firstName = f(d, 'firstName'); L.lastName = f(d, 'lastName'); L.email = f(d, 'email'); L.company = f(d, 'company'); L.website = f(d, 'website'); L.range = f(d, 'range');
       L.employees = f(d, 'employees', 40); L.revenue = f(d, 'revenue', 40); L.founded = f(d, 'founded', 20);
       L.industry = f(d, 'industry', 120);
+      // Triaged by the site against the published bar (20 staff, 3 years).
+      L.qualified = d.qualified === true;
+      L.years = f(d, 'years', 10);
       L.systems = Array.isArray(d.systems) ? [...new Set(d.systems.filter(x => typeof x === 'string').map(x => x.trim().slice(0, 80)).filter(Boolean))].slice(0, 30) : [];
       L.estimateIsExample = d.estimateIsExample !== false;
       L.authority = f(d, 'authority', 200); L.dataContext = f(d, 'dataContext', 2000);

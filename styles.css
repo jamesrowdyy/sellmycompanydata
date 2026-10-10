@@ -87,6 +87,17 @@ select:focus,input:focus{border-color:#b4b4bb;box-shadow:0 0 0 3px rgba(13,13,13
 .bar i{display:block;height:100%;width:8%;background:var(--accent);border-radius:999px;transition:width .35s cubic-bezier(.4,0,.2,1)}
 .result .note{font-size:12.5px;color:var(--dim);line-height:1.5;margin-top:14px}
 .result .btn{margin-top:22px}
+/* Gate: who we licence from, and the below-the-bar state */
+.bar-note{font-size:14.5px;color:var(--muted);margin:12px 0 0;line-height:1.55}
+#notfit .notfit-h{font-size:20px;font-weight:600;letter-spacing:-.015em;margin:14px 0 10px}
+#notfit p{font-size:14.5px;color:var(--muted);line-height:1.6;margin:0 0 10px}
+#notfit b{color:var(--ink);font-weight:600}
+.who-qualifies{margin-top:26px;border:1px solid var(--line);border-radius:16px;padding:24px 26px;background:#fff}
+.who-qualifies h3{font-size:17px;font-weight:600;margin:0 0 12px;letter-spacing:-.01em}
+.who-qualifies ul{margin:0 0 12px;padding-left:20px}
+.who-qualifies li{font-size:15px;color:var(--muted);line-height:1.7}
+.who-qualifies b{color:var(--ink);font-weight:600}
+.who-qualifies p{font-size:14.5px;color:var(--dim);margin:0;line-height:1.55}
 
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .card{border:1px solid var(--line);border-radius:16px;padding:26px;background:#fff;transition:border-color .15s,box-shadow .15s}
