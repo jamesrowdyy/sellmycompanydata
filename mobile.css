@@ -42,8 +42,8 @@
   .result .k{font-size:13px}
   .result .val{font-size:clamp(30px,8.5vw,40px);margin-top:8px}
   .result .bar{margin-top:16px}
-  .result .note{font-size:13px;line-height:1.5;margin-top:12px}
-  .result .note a{text-decoration:underline;text-underline-offset:3px}
+  .result .note{font-size:14px;line-height:1.5;margin-top:12px}
+  .result .note a{text-decoration:underline;text-underline-offset:3px;display:inline-block;padding:12px 0;margin:-12px 0}
   .result .btn{margin-top:18px;min-height:48px}
   input,select,textarea{font-size:16px;border-radius:12px;min-height:50px}
   .field{margin-bottom:20px}
@@ -70,3 +70,5 @@
   .hero .actions{grid-template-columns:1fr}
   .panel,.result{padding:16px}
 }
+/* keep money ranges on one line in narrow tables */
+.table-scroll td:last-child{white-space:nowrap}

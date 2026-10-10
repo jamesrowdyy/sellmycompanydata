@@ -38,7 +38,7 @@ with sync_playwright() as p:
                 assert page.locator('#value').bounding_box()['y'] < page.locator('.logoband').bounding_box()['y']
                 page.locator('#emp').fill('24')
                 expect(tabs).to_be_hidden()
-                page.locator('#rev').select_option('1-10m')
+                page.locator('#ctry').select_option('us')
                 page.locator('#yr').select_option('2015')
                 page.evaluate('document.activeElement.blur()')
                 expect(tabs).to_be_visible()
@@ -51,6 +51,14 @@ with sync_playwright() as p:
                     page.screenshot(path=str(out/'mobile-systems.png'))
                     page.locator('.result').scroll_into_view_if_needed()
                     page.screenshot(path=str(out/'mobile-estimate.png'))
+                # Not eligible: no estimate to show, so the sticky bar stays hidden.
+                page.locator('#yr').select_option(str(page.evaluate('new Date().getFullYear()')))
+                page.evaluate('document.activeElement.blur()')
+                page.locator('#sys').scroll_into_view_if_needed()
+                page.wait_for_timeout(200)
+                assert 'show' not in (page.locator('#appbar').get_attribute('class') or '')
+                page.locator('#yr').select_option('2015')
+                page.evaluate('document.activeElement.blur()')
             if width == 390:
                 page.evaluate('window.scrollTo(0,0)')
                 page.screenshot(path=str(out/(path.strip('/') or 'home'))+'.png')
