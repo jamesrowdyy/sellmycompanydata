@@ -181,6 +181,7 @@
 <link rel="stylesheet" href="/brand.css?v=licensing-5">
 <link rel="stylesheet" href="/audit.css?v=1">
 <script defer src="/site-events.js?v=2"></script>
+<script defer src="/attribution.js?v=1"></script>
 <meta name="twitter:image:alt" content="Monetize the data supply only you have. Your company’s data could be worth $20K–$5M, subject to data review and agreed terms.">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <link rel="stylesheet" href="/analytics.css?v=1">
@@ -649,6 +650,7 @@ calc();
       authority: document.getElementById('authority').value,
       dataContext: document.getElementById('data-context').value.trim(),
       _gotcha: document.getElementById('_gotcha').value,
+      src: (window.smcdSrc ? window.smcdSrc() : ''),
     };
     btn.disabled = true; btn.textContent = 'Sending...';
     msg.className = 'form-msg'; msg.textContent = '';

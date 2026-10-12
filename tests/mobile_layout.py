@@ -4,7 +4,7 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright, expect
 
 url = os.environ.get('SITE_TEST_URL', 'http://127.0.0.1:8000').rstrip('/')
-paths = ['/', '/buyers/', '/refer/', '/privacy/', '/terms/', '/data-licensing/', '/data-valuation/']
+paths = ['/', '/buyers/', '/refer/', '/privacy/', '/terms/', '/data-licensing/', '/data-valuation/', '/r/']
 out = Path('/tmp/smcd-mobile-checks')
 out.mkdir(exist_ok=True)
 with sync_playwright() as p:

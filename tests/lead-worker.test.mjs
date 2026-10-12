@@ -9,10 +9,10 @@ const env={LEADS:kv,SLACK_WEBHOOK:'https://old.example.invalid/never-send'};
 globalThis.fetch=async(url,init)=>{requests.push({url,body:JSON.parse(init.body)});if(String(url).includes('/api/chat.postMessage'))return new Response(JSON.stringify({ok:responseOk}),{status:200,headers:{'content-type':'application/json'}});return new Response(responseOk?'ok':'error',{status:responseOk?200:503})};
 const ctx={waitUntil:p=>pending.push(p)};
 async function post(route,payload){return worker.fetch(new Request('https://sellmycompanydata.com/api/'+route,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}),env,ctx)}
-const seller={firstName:'AUTOMATED',lastName:'TEST',email:'test@example.invalid',company:'SMCD AUTOMATED TEST',employees:'24',revenue:'1m-10m',founded:'2015',industry:'software',systems:['Slack','Xero'],estimateIsExample:false,authority:'Owner',qualified:true,years:11,dataContext:'x'.repeat(2000),range:'$188.5K–$283K'};
+const seller={firstName:'AUTOMATED',lastName:'TEST',email:'test@example.invalid',company:'SMCD AUTOMATED TEST',employees:'24',revenue:'1m-10m',founded:'2015',industry:'software',systems:['Slack','Xero'],estimateIsExample:false,authority:'Owner',qualified:true,years:11,dataContext:'x'.repeat(2000),range:'$188.5K–$283K',src:'acme-accounting'};
 const belowBar={...seller,email:'small@example.invalid',company:'SMCD BELOW BAR',employees:'8',qualified:false,years:2,range:''};
 failWrite=true;assert.equal((await post('lead',seller)).status,503);assert.equal(requests.length,0);assert.equal(map.size,0);failWrite=false;
-const r=await post('lead',seller);assert.equal(r.status,200);const res=await r.json();assert.equal(res.ok,true);let key=[...map.keys()][0];let record=JSON.parse(map.get(key));for(const k of ['employees','revenue','founded','industry','systems','estimateIsExample','authority','dataContext'])assert.deepEqual(record[k],seller[k]);assert.equal(record.notification.status,'pending');assert.equal(requests.length,0);assert.equal(pending.length,0);
+const r=await post('lead',seller);assert.equal(r.status,200);const res=await r.json();assert.equal(res.ok,true);let key=[...map.keys()][0];let record=JSON.parse(map.get(key));for(const k of ['employees','revenue','founded','industry','systems','estimateIsExample','authority','dataContext','src'])assert.deepEqual(record[k],seller[k]);assert.equal(record.notification.status,'pending');assert.equal(requests.length,0);assert.equal(pending.length,0);
 assert.equal((await post('buyer',{email:'test@example.invalid',organization:'SMCD TEST BUYER',dataTypes:'Messages'})).status,200);
 assert.equal((await post('refer',{referrerEmail:'test@example.invalid',company:'SMCD TEST REFERRAL',industry:'Software',size:'1-10'})).status,200);
 assert.equal((await post('lead',null)).status,400);
@@ -25,6 +25,7 @@ assert.ok(requests[0].body.text.includes('QUALIFIED'),'alert names the qualifica
 assert.ok(requests[0].body.text.includes('24 staff'),'alert carries the headcount');
 assert.ok(requests[0].body.text.includes('Systems: Slack, Xero'),'alert carries the systems of record');
 assert.ok(requests[0].body.text.includes('$188.5K'),'alert carries the estimate shown');
+assert.ok(requests[0].body.text.includes('Source: acme-accounting'),'alert names the referral source');
 await worker.scheduled({},env,ctx);await Promise.all(pending);pending=[];assert.equal(requests.length,3,'delivered records must not resend');
 responseOk=false;await post('lead',seller);await Promise.all(pending);pending=[];let retryKey=[...map.keys()].at(-1);record=JSON.parse(map.get(retryKey));assert.equal(record.notification.attempts,1);assert.equal(record.notification.status,'pending');
 for(let i=0;i<6;i++){record=JSON.parse(map.get(retryKey));record.notification.nextAttemptAt='2000-01-01T00:00:00Z';map.set(retryKey,JSON.stringify(record));await worker.scheduled({},env,ctx);await Promise.all(pending);pending=[];}
