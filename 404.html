@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Page not found | Sell My Company Data</title>
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/typography.css?v=3">
+<link rel="stylesheet" href="/brand.css?v=licensing-3">
+<link rel="stylesheet" href="/mobile.css?v=20261011-calc">
+</head>
+<body>
+<div class="wrap" style="padding:64px 0 96px">
+  <h1>That page is not here</h1>
+  <p>The link may be old, or the address may have a typo in it.</p>
+  <div class="actions">
+    <a class="btn btn-primary btn-lg" href="/">Get an estimate</a>
+    <a class="btn btn-ghost btn-lg" href="/refer/">Refer a company</a>
+  </div>
+</div>
+<script>
+/* Partner links are shared as clean paths (/r/<code>/). GitHub Pages has no directory for each
+   code, so they land here. Send those on to the referral page with the code attached. */
+(function () {
+  var m = /^\/r\/([A-Za-z0-9_-]{1,40})\/?$/.exec(location.pathname);
+  if (m) location.replace('/r/?src=' + encodeURIComponent(m[1].toLowerCase()) + location.hash);
+})();
+</script>
+</body>
+</html>

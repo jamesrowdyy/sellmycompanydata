@@ -39,6 +39,7 @@ function slackText(kind, L) {
       'Reference: ' + L.id
     );
   }
+  if (L.src) lines.push('Source: ' + safe(L.src));
   lines.push('Details saved in the Sell My Company Data lead store.');
   return lines.join(NL);
 }
@@ -110,6 +111,8 @@ export default {
     if (f(d, '_gotcha')) return json({ ok: true, spam: true });
     const id = crypto.randomUUID();
     const L = { id: id, kind: kind, ts: new Date().toISOString(), ip: request.headers.get('CF-Connecting-IP') || '', country: request.headers.get('CF-IPCountry') || '', ua: (request.headers.get('User-Agent') || '').slice(0, 250) };
+    // Referral attribution: which partner link this company arrived through.
+    L.src = f(d, 'src', 40);
     if (kind === 'lead') {
       L.firstName = f(d, 'firstName'); L.lastName = f(d, 'lastName'); L.email = f(d, 'email'); L.company = f(d, 'company'); L.website = f(d, 'website'); L.range = f(d, 'range');
       L.employees = f(d, 'employees', 40); L.revenue = f(d, 'revenue', 40); L.founded = f(d, 'founded', 20);

@@ -170,6 +170,7 @@
 <link rel="stylesheet" href="/brand.css?v=licensing-3">
 <link rel="stylesheet" href="/audit.css?v=1">
 <script defer src="/site-events.js?v=1"></script>
+<script defer src="/attribution.js?v=1"></script>
 <meta property="og:image:alt" content="Refer a business. Earn $10,000 per completed data licence, with the fee confirmed in writing before the introduction.">
 <meta name="twitter:image:alt" content="Refer a business. Earn $10,000 per completed data licence, with the fee confirmed in writing before the introduction.">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
@@ -427,7 +428,8 @@
           contact: document.getElementById('r-contact').value.trim(),
           relationship: document.getElementById('r-relationship').value,
           why: document.getElementById('r-why').value.trim(),
-          _gotcha: document.getElementById('r-gotcha').value
+          _gotcha: document.getElementById('r-gotcha').value,
+          src: (window.smcdSrc ? window.smcdSrc() : ''),
         };
     btn.disabled = true; btn.textContent = 'Sending...';
     msg.className = 'form-msg'; msg.textContent = '';
