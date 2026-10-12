@@ -1,8 +1,9 @@
 /* Payout model, rebuilt 2026-10-11 on published buyer pricing.
 
-   Most buyers publish ranges, not formulas. Handshake AI is the exception: its
-   data-partnership calculator (joinhandshake.com/ai/data-partnerships) ships its
-   pricing in the page. Read from that page on 2026-10-11:
+   Most buyers publish ranges, not formulas. One live buyer programme is the exception: its
+   data-partnership calculator ships its pricing in the page. Read from that page on 2026-10-11.
+   The buyer's name is kept out of every public file on purpose; it is recorded in the venture
+   ticket and internal research notes instead.
 
      base $140,000 + $2,333 per employee + $11,667 per year of operation
      + $15.75 per GB of records (1 GB per employee-year at the low end, 14 GB at the high end)
@@ -13,14 +14,14 @@
      Staff are clamped to 20-200 and years to 3-20.
 
    That returns $383,083 - $896,969 for a 100-person, 10-year US company, which is
-   exactly what Handshake shows. We reproduce it, with one change: the systems a
+   exactly what that programme shows. We reproduce it, with one change: the systems a
    company selects set the record volume behind the HIGH bound. No systems selected
-   uses Handshake's low-volume assumption (1 GB per employee-year), six or more uses
+   uses the published low-volume assumption (1 GB per employee-year), six or more uses
    its high-volume one (14 GB), in equal steps. Mercor's own page says the same
    thing in words: the more tools you share, the higher the payout.
 
    Cross-checks: micro1 tiers start at $100K for 30+ staff, Polyshares quotes
-   $100K-$2M+, and Handshake's lowest US figure is exactly $100K at 20 staff, 3 years.
+   $100K-$2M+, and the lowest published US figure is exactly $100K at 20 staff, 3 years.
    Revenue and industry do not move the number: no buyer prices on them.
    Output is whole US dollars. Indicative only, never an offer. */
 (function(root){
@@ -41,7 +42,7 @@
 
   function bump(v){ return Math.max(v + 1, Math.ceil(v * P.uplift)); }
 
-  // Handshake's published formula; gbHigh is the record volume behind the high bound.
+  // A live buyer's published formula; gbHigh is the record volume behind the high bound.
   function buyerRange(employees, years, region, gbHigh){
     var ey = employees * years;
     var lowTB = Math.max(P.lowMinTB, ey * P.lowGB / 1000);
