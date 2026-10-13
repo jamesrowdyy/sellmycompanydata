@@ -12,6 +12,25 @@ function json(o, status) {
   return new Response(JSON.stringify(o), { status: status || 200, headers: { 'content-type': 'application/json; charset=utf-8', ...cors() } });
 }
 function f(d, k, max = 400) { return String((d && d[k]) || '').trim().slice(0, max); }
+const SITE = 'https://sellmycompanydata.com';
+const REFER_DAILY_CAP = 3;
+// Returns a reason string when a submission should be quarantined, else ''.
+async function abuseReason(request, d, kind, L, env) {
+  const origin = request.headers.get('Origin') || '';
+  // Real browsers posting from our pages send our Origin and a full UA with a platform in brackets.
+  if (origin !== SITE) return 'origin';
+  if (!/\(.+\)/.test(L.ua)) return 'scripted_ua';
+  const email = String((d && (d.email || d.referrerEmail)) || '').trim().toLowerCase();
+  if (email && await env.LEADS.get('block:email:' + email)) return 'blocked_email';
+  if (L.ip && await env.LEADS.get('block:ip:' + L.ip)) return 'blocked_ip';
+  if (kind === 'refer' && email) {
+    const k = 'rl:refer:' + email + ':' + L.ts.slice(0, 10);
+    const n = Number(await env.LEADS.get(k)) || 0;
+    await env.LEADS.put(k, String(n + 1), { expirationTtl: 60 * 60 * 48 });
+    if (n >= REFER_DAILY_CAP) return 'referral_flood';
+  }
+  return '';
+}
 // Slack receives a concise reference; private free-text stays in the lead store.
 function slackText(kind, L) {
   const label = kind === 'buyer' ? 'Buyer brief' : kind === 'refer' ? 'Referral' : 'Seller enquiry';
@@ -111,6 +130,13 @@ export default {
     if (f(d, '_gotcha')) return json({ ok: true, spam: true });
     const id = crypto.randomUUID();
     const L = { id: id, kind: kind, ts: new Date().toISOString(), ip: request.headers.get('CF-Connecting-IP') || '', country: request.headers.get('CF-IPCountry') || '', ua: (request.headers.get('User-Agent') || '').slice(0, 250) };
+    // Abuse guard: scripts, blocked senders and referral floods are quarantined, not rejected,
+    // so the sender sees a normal success and never learns which rule caught them.
+    const why = await abuseReason(request, d, kind, L, env);
+    if (why) {
+      try { await env.LEADS.put('spam:' + L.ts + ':' + id, JSON.stringify({ ...L, reason: why, payload: d }), { expirationTtl: 60 * 60 * 24 * 90 }); } catch (_) {}
+      return json({ ok: true, id: id, notification: 'pending' });
+    }
     // Referral attribution: which partner link this company arrived through.
     L.src = f(d, 'src', 40);
     if (kind === 'lead') {
