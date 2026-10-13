@@ -8,7 +8,8 @@ const kv = {put:async(k,v)=>{if(failWrite) throw Error('storage');map.set(k,v)},
 const env={LEADS:kv,SLACK_WEBHOOK:'https://old.example.invalid/never-send'};
 globalThis.fetch=async(url,init)=>{requests.push({url,body:JSON.parse(init.body)});if(String(url).includes('/api/chat.postMessage'))return new Response(JSON.stringify({ok:responseOk}),{status:200,headers:{'content-type':'application/json'}});return new Response(responseOk?'ok':'error',{status:responseOk?200:503})};
 const ctx={waitUntil:p=>pending.push(p)};
-async function post(route,payload){return worker.fetch(new Request('https://sellmycompanydata.com/api/'+route,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}),env,ctx)}
+const BROWSER={'Content-Type':'application/json','Origin':'https://sellmycompanydata.com','User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/154.0 Safari/537.36','CF-Connecting-IP':'203.0.113.9'};
+async function post(route,payload,headers=BROWSER){return worker.fetch(new Request('https://sellmycompanydata.com/api/'+route,{method:'POST',headers,body:JSON.stringify(payload)}),env,ctx)}
 const seller={firstName:'AUTOMATED',lastName:'TEST',email:'test@example.invalid',company:'SMCD AUTOMATED TEST',employees:'24',revenue:'1m-10m',founded:'2015',industry:'software',systems:['Slack','Xero'],estimateIsExample:false,authority:'Owner',qualified:true,years:11,dataContext:'x'.repeat(2000),range:'$188.5K–$283K',src:'acme-accounting'};
 const belowBar={...seller,email:'small@example.invalid',company:'SMCD BELOW BAR',employees:'8',qualified:false,years:2,range:''};
 failWrite=true;assert.equal((await post('lead',seller)).status,503);assert.equal(requests.length,0);assert.equal(map.size,0);failWrite=false;
@@ -17,7 +18,7 @@ assert.equal((await post('buyer',{email:'test@example.invalid',organization:'SMC
 assert.equal((await post('refer',{referrerEmail:'test@example.invalid',company:'SMCD TEST REFERRAL',industry:'Software',size:'1-10'})).status,200);
 assert.equal((await post('lead',null)).status,400);
 assert.equal((await post('lead',{})).status,400);
-assert.equal((await post('lead',{_gotcha:'spam'})).status,200);assert.equal(map.size,3);
+assert.equal((await post('lead',{_gotcha:'spam'})).status,200);assert.equal([...map.keys()].filter(k=>k.startsWith('lead:')).length,3);
 await worker.scheduled({},env,ctx);await Promise.all(pending);pending=[];assert.equal(requests.length,0);
 env.SLACK_LEADS_WEBHOOK='https://new.example.invalid/approved-channel';await worker.scheduled({},env,ctx);await Promise.all(pending);pending=[];assert.equal(requests.length,3);assert(requests.every(r=>r.url===env.SLACK_LEADS_WEBHOOK));assert(!requests.some(r=>r.body.text.includes(seller.dataContext)));assert.equal(JSON.parse(map.get(key)).notification.status,'delivered');
 // the alert must lead with the triage line so James can judge at a glance
@@ -52,3 +53,21 @@ assert.equal(record.company,'SMCD BELOW BAR');
 assert.ok(requests[0].body.text.includes('BELOW THE BAR'),'alert flags a below-bar lead');
 assert.ok(requests[0].body.text.includes('8 staff'),'alert carries the below-bar headcount');
 console.log('PASS: below-the-bar sellers are captured and flagged, never silently dropped.');
+
+// Abuse guard: scripts, off-site posts, blocked senders and referral floods are quarantined silently.
+{const before=[...map.keys()].filter(k=>k.startsWith('lead:')).length;
+const ref={referrerEmail:'farmer@example.invalid',company:'X LTD',industry:'Other',size:'50-99'};
+let r1=await post('refer',ref,{...BROWSER,'User-Agent':'DataSellReferralSubmission/1.0'});assert.equal(r1.status,200);
+let r2=await post('refer',ref,{...BROWSER,'User-Agent':'Mozilla/5.0'});assert.equal(r2.status,200);
+let r3=await post('refer',ref,{'Content-Type':'application/json','User-Agent':BROWSER['User-Agent']});assert.equal(r3.status,200);
+for(let i=0;i<5;i++)assert.equal((await post('refer',{...ref,company:'FLOOD '+i})).status,200);
+map.set('block:email:blocked@example.invalid','1');
+assert.equal((await post('lead',{...seller,email:'blocked@example.invalid'})).status,200);
+map.set('block:ip:198.51.100.7','1');
+assert.equal((await post('lead',seller,{...BROWSER,'CF-Connecting-IP':'198.51.100.7'})).status,200);
+const after=[...map.keys()].filter(k=>k.startsWith('lead:')).length;
+assert.equal(after-before,3,'only the first 3 browser referrals per sender per day become leads');
+const spam=[...map.keys()].filter(k=>k.startsWith('spam:')).map(k=>JSON.parse(map.get(k)).reason);
+for(const want of ['scripted_ua','origin','referral_flood','blocked_email','blocked_ip'])assert.ok(spam.includes(want),'quarantined for '+want);
+assert.equal(spam.filter(x=>x==='referral_flood').length,2);
+console.log('PASS: abuse guard quarantines scripted UA, off-site posts, blocked email/IP and referral floods, with a normal-looking response.');}
