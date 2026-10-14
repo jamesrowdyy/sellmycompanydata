@@ -53,6 +53,14 @@ assert.equal(record.company,'SMCD BELOW BAR');
 assert.ok(requests[0].body.text.includes('BELOW THE BAR'),'alert flags a below-bar lead');
 assert.ok(requests[0].body.text.includes('8 staff'),'alert carries the below-bar headcount');
 console.log('PASS: below-the-bar sellers are captured and flagged, never silently dropped.');
+// VEN-98 frontend manual review reuses existing fields; no Worker deploy is needed.
+const manualReview = {...belowBar, range:'Manual review requested (outside calculator scope)', dataContext:'Specialist archive and RL environment for review', src:'specialist-test'};
+requests=[];await post('lead',manualReview);await Promise.all(pending);pending=[];
+record=JSON.parse(map.get([...map.keys()].at(-1)));
+for (const k of ['range','dataContext','src','qualified']) assert.deepEqual(record[k],manualReview[k]);
+assert.ok(requests[0].body.text.includes(manualReview.range),'manual review marker is visible in the existing Slack alert');
+assert.ok(!requests[0].body.text.includes(manualReview.dataContext),'private context stays in storage');
+console.log('PASS: manual review marker persists and alerts with unchanged Worker payload and privacy.');
 
 // Abuse guard: scripts, off-site posts, blocked senders and referral floods are quarantined silently.
 {const before=[...map.keys()].filter(k=>k.startsWith('lead:')).length;

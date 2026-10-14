@@ -17,13 +17,12 @@
    exactly what that programme shows. We reproduce it, with one change: the systems a
    company selects set the record volume behind the HIGH bound. No systems selected
    uses the published low-volume assumption (1 GB per employee-year), six or more uses
-   its high-volume one (14 GB), in equal steps. Mercor's own page says the same
-   thing in words: the more tools you share, the higher the payout.
+   its high-volume one (14 GB), in equal steps. This volume is assumed, not measured.
 
-   Cross-checks: micro1 tiers start at $100K for 30+ staff, Polyshares quotes
-   $100K-$2M+, and the lowest published US figure is exactly $100K at 20 staff, 3 years.
-   Revenue and industry do not move the number: no buyer prices on them.
-   Output is whole US dollars. Indicative only, never an offer. */
+   Revenue and industry do not move this model's number.
+   The qualifies flag means within calculator scope, not universal buyer eligibility.
+   Smaller specialist opportunities can request manual review without a number.
+   Output is whole US dollars. Indicative only, not a market valuation or offer. */
 (function(root){
   'use strict';
   var P = {

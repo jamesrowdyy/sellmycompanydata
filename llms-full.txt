@@ -4,20 +4,20 @@ Website: https://sellmycompanydata.com/
 Brand name: Sell My Company Data
 
 ## What the business does
-Sell My Company Data helps companies explore licensing de-identified business workflow records to AI labs and research teams. Potential records include support tickets, internal messages, contracts, invoices, reconciliation records, procedures and project documentation. Availability and eligibility require rights, permissions and scope review; a listed data category is not a guarantee of inventory.
+Sell My Company Data helps scope enquiries and arrange introductions to specialist licensing partners for AI training and evaluation; it does not claim direct lab contracts or guarantee a buyer. Potential records include support tickets, internal messages, contracts, invoices, reconciliation records, procedures and project documentation. Availability and eligibility require rights, permissions and scope review; a listed data category is not a guarantee of inventory.
 
 ## Sellers
-A company can use the free indicative calculator and then submit a booking enquiry. The enquiry asks for contact/company details, the connection to the data and optional context. Calculator answers are included when the enquiry is submitted. Changing calculator inputs alone does not submit a lead or upload business records. Booking proceeds through https://cal.com/jamesrowdyy/15min.
+A company can use the free indicative calculator and then submit a booking enquiry. The enquiry asks for contact/company details, the connection to the data and optional context. Calculator answers are included when the enquiry is submitted. Changing calculator inputs alone does not submit a lead or upload business records. Within calculator scope, booking proceeds through https://cal.com/jamesrowdyy/15min. Other enquiries are saved for manual review, without automatic booking.
 
 ## Calculator
 Base pricing is a live buyer's published data-partnership calculator, read 2026-10-11. Value = $140,000 + $2,333 per employee + $11,667 per year of operation + $15.75 per GB of records. Low bound = 0.75 x value; high bound = 1.25 x value; both x a country factor (US 1.00, Canada 0.75, UK and Europe 0.75, Australia, New Zealand and elsewhere 0.30), then x 1.01 rounded up. Below 50 staff the low bound is reduced by up to $69,102 x country factor (full at 20 staff, none at 50+). Employees count up to 200 and years up to 20; above either the range ends with a plus sign.
 Records: the low bound assumes 1 GB per employee-year. The high bound rises with selected systems in equal steps from 1 GB (none) to 14 GB (six or more).
-Qualifying bar: 20+ employees and 3+ years. Below it the calculator shows no number. Revenue and industry do not change the result.
+Calculator scope: 20+ employees and 3+ years, not universal buyer eligibility. Below it the calculator shows no number; small specialist businesses, datasets and RL environments can request manual review through the same form and optional context field. Revenue and industry do not change the result.
 Examples: 100 staff, 10 years, US, six systems = $383,083 to $896,969 (identical to that buyer programme's published figure); same in Canada/UK/Europe = $287,313 to $672,727; same in Australia/NZ = $114,925 to $269,091; 50 staff, 10 years, US, three systems = $288,755 to $545,883; 20 staff, 3 years, US, no systems = $100,000 to $283,825. These are model outputs, not guaranteed prices or evidence of completed deals.
 Methodology: https://sellmycompanydata.com/data-valuation/
 
 ## Licensing
-A licence grants defined permission rather than transferring ownership. A written agreement must define records, permitted use, preparation, delivery and payment. De-identification alone does not establish a right to license data. No data access or licence is granted by an initial enquiry.
+A licence grants defined permission rather than transferring ownership. A written agreement must define records, permitted use, preparation, delivery and payment. De-identification does not guarantee anonymity or establish a right to license data. The signed vendor agreement controls access, retention and deletion. Trained-model deletion must not be assumed. Renewal or resale is not automatic, including after a one-year term. No offer, sale or payment timeline is guaranteed. No data access or licence is granted by an initial enquiry.
 Guide: https://sellmycompanydata.com/data-licensing/
 
 ## Buyers

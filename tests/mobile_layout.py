@@ -5,7 +5,7 @@ from playwright.sync_api import sync_playwright, expect
 
 url = os.environ.get('SITE_TEST_URL', 'http://127.0.0.1:8000').rstrip('/')
 paths = ['/', '/buyers/', '/refer/', '/privacy/', '/terms/', '/data-licensing/', '/data-valuation/', '/r/']
-out = Path('/tmp/smcd-mobile-checks')
+out = Path(os.environ.get('SITE_TEST_ARTIFACTS', str(Path.home() / '.hermes/cache/scratch/smcd-mobile-checks')))
 out.mkdir(exist_ok=True)
 with sync_playwright() as p:
     browser = p.chromium.launch(args=['--no-sandbox'])
@@ -63,4 +63,4 @@ with sync_playwright() as p:
                 page.evaluate('window.scrollTo(0,0)')
                 page.screenshot(path=str(out/(path.strip('/') or 'home'))+'.png')
     browser.close()
-print('Mobile shell, estimate order, active tabs, menus, keyboard and overflow checks passed at five widths across seven pages.')
+print('Mobile shell, estimate order, active tabs, menus, keyboard and overflow checks passed at five widths across eight pages.')
