@@ -1,8 +1,8 @@
 # Sell My Company Data
 
-> Sell My Company Data helps companies explore licensing de-identified operational records to AI labs and research teams. Companies retain ownership; scope, permitted use and payment are agreed in writing.
+> Sell My Company Data helps scope enquiries and arrange introductions to specialist licensing partners for AI training and evaluation; it does not claim direct lab contracts. Companies retain ownership; scope, permitted use and payment are agreed in writing.
 
-The free calculator is an indicative model, not a buyer offer. It uses published buyer pricing (a live buyer's data-partnership calculator) by employees, years of operation, country and systems in use. Revenue and industry do not change its result. Final pricing depends on records, volume, quality, permissions and buyer review.
+The free calculator is an indicative model, not a market valuation or buyer offer. Small specialist businesses, datasets and RL environments can request manual review instead of a calculator estimate. It uses published buyer pricing (a live buyer's data-partnership calculator) by employees, years of operation, country and systems in use. Revenue and industry do not change its result. Final pricing depends on records, volume, quality, permissions and buyer review.
 
 ## Sellers
 - [Home and calculator](https://sellmycompanydata.com/): estimate a potential licence range and request a conversation.
