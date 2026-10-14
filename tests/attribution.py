@@ -65,7 +65,7 @@ with sync_playwright() as p:
     check("/r/ has no horizontal overflow",
           page.evaluate("document.documentElement.scrollWidth <= innerWidth"))
     check("/r/ has no javascript errors", not errors, errors)
-    page.screenshot(path="/tmp/smcd-r-page.png")
+    page.screenshot(path=os.path.join(os.environ.get('TMPDIR', '.'), 'smcd-r-page.png'))
     ctx.close()
 
     # 2. A seller arrives through the partner link: the homepage remembers the code and posts it.

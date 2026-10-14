@@ -1,6 +1,7 @@
 """Manual review regressions; API/calendar/analytics intercepted, no live leads."""
 import functools
 import http.server
+import os
 from pathlib import Path
 import threading
 from playwright.sync_api import sync_playwright, expect
@@ -10,14 +11,14 @@ class QuietHandler(http.server.SimpleHTTPRequestHandler):
     def log_message(self, format, *args): pass
 server = http.server.ThreadingHTTPServer(('127.0.0.1', 0), functools.partial(QuietHandler, directory=str(ROOT)))
 threading.Thread(target=server.serve_forever, daemon=True).start()
-url = f'http://127.0.0.1:{server.server_port}'
+url = os.environ.get('SITE_TEST_URL', f'http://127.0.0.1:{server.server_port}').rstrip('/')
 try:
     with sync_playwright() as p:
         browser = p.chromium.launch()
         page = browser.new_page(viewport={'width': 390, 'height': 844})
         calls, errors = [], []
         page.on('pageerror', lambda e: errors.append(str(e)))
-        page.route('https://**', lambda r: r.fulfill(body=''))
+        page.route('https://**', lambda r: r.continue_() if r.request.url.startswith(url + '/') else r.fulfill(body=''))
         def api(route):
             calls.append(route.request.post_data_json)
             route.fulfill(content_type='application/json', body='{"ok":true}')
